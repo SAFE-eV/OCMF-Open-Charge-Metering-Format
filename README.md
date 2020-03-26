@@ -2,6 +2,9 @@
 
 This is a markdown version of OCMF for further development within the SAFE Group.
 
- * Current German version: [Datenformat_OCMF_v1.0.md](Datenformat_OCMF_v1.0.md)
+ * Current German version: [OCMF-de.md](OCMF-de.md)
+
+Upcoming versions can be found in branches.
 
 All credits to the authors of the document.
+
