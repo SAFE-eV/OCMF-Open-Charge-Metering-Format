@@ -1,4 +1,4 @@
-# Open Charge Metering Format (OCMF
+# Open Charge Metering Format (OCMF)
 
 This is a markdown version of OCMF for further development within the SAFE Group.
 
