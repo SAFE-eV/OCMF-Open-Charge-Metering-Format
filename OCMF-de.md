@@ -50,11 +50,8 @@ Datenformats gegeben, in den weiteren Sektionen wird das Datenformat erläutert.
 
 ### Lizenz
 
-TODOs:
-
- * Lizenz definieren
- * MIT: sehr frei, Verwertung in Werk enthaltener Patente nicht geregelt
- * Apache: auch sehr frei, soll jedoch Regelung zu Patenten enthalten -> Klären!
+Dieses Dokument wird unter der *Creative Commons Attribution-NoDerivatives 4
+.0 International Public License* zur Verfügung gestellt (https://creativecommons.org/licenses/by-nd/4.0/legalcode).
 
 
 ### Referenzen
@@ -436,7 +433,7 @@ Die folgende Tabelle stellt die vordefinierten Werte für die Felder Hersteller 
 |                 | EM111-DIN.AV8.1.X.S1.PF |
 |                 | EM210-72D.MV5.3.X.OS.X  |
 | NZR             | EcoCount S 85           |
-<small>Tablle 8: Werte für Hersteller/Modell des Zählers</small>
+<small>Tabelle 8: Werte für Hersteller/Modell des Zählers</small>
 
 #### Zustand / Fehler des Zählers
 
@@ -602,9 +599,8 @@ Nachgang kann noch geklärt werden, welche davon zu verwenden sind. Die Formate 
 | 1-b:2.8.0     | Lieferung von elektrischer Energie (Wirkarbeit) von dem Kunden an das Stromnetz (des Ladepunktbetreibers). |
 | 1-0:1.8.0     | Bezug von elektrischer Energie (Wirkarbeit) aus dem Stromnetz (des Ladepunktbetreibers) an den Kunden.     |
 | 1-0:2.8.0     | Lieferung von elektrischer Energie (Wirkarbeit) von dem Kunden an das Stromnetz (des Ladepunktbetreibers). |
-<small>Tabelle 19: Vordefinierte OBIS-Codes</small>
 
-**TODOs:** Kommentar(e) zu den OBIS-Codes noch analysieren. Dies führt evtl. zu veränderten OBIS-Codes.
+<small>Tabelle 19: Vordefinierte OBIS-Codes</small>
 
 #### Einheiten
 
