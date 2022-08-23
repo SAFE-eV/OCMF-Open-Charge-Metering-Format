@@ -73,7 +73,7 @@ Dieses Dokument wird unter der *Creative Commons Attribution-NoDerivatives 4
 * ECDSA: Elliptic Curve Digital Signature Algorithm
 * EMP: Electric Mobility Provider, Fahrstromanbieter
 * ISO: International Standards Organisation
-* MID: Measuring Instruments Directive, europäische Richtlinie 2004/22/EG
+* MID: Measuring Instruments Directive, europäische Richtlinie 2014/32/EU
 * OBIS: OBject Identification System
 * OCPP: Open Charge Point Protocol
 * PIN: Personal Identification Number
