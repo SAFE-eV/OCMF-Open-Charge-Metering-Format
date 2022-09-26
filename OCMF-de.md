@@ -275,7 +275,7 @@ Transaktionsbezug besteht, fehlt diese Gruppe von Feldern.
 | IF   | Array of  String |0..4 | Identification-Flags: Detailaussagen zur Nutzerzuordnung, dargestellt durch einen oder mehrere Bezeichner aus Tabelle 12 bis Tabelle 15. Die Bezeichner werden stets als String- Elemente in einem Array notiert. Auch ein oder kein Element muss als Array notiert werden.                                |
 | IT   | String           |1..1 | Identification-Type: Typ der Identifikationsdaten, Bezeichner siehe Tabelle 16                                                                                                                                                                                                                             |
 | ID   | String           |0..1 | Identification-Data: Die eigentlichen Identifikationsdaten entsprechend des Typs aus Tabelle 16, also z.B. eine Hex-Codierte UID entsprechend ISO14443.                                                                                                                                                    |
-| TT   | String (0..250)  |0..1 |    TarifText: Text zur Identifikation eines eindeutigen Tarifes.                                                                                                                                                 |
+| TT   | String (0..250)  |0..1 |    TarifText: Text zur Identifikation eines eindeutigen Tarifes. Dieses Feld ist für die Tarifbezeichnung in "Direct Payment" Anwendungsfall gedacht.                                                                                                                                               |
 <small>Tabelle 4</small>
 
 ##### Zuordnung des Ladepunktes
@@ -404,6 +404,7 @@ Beispiele zu den resultierenden JSON-basierten Formaten:
         ],
         "IT": "ISO14443",
         "ID": "1F2D3A4F5506C7",
+        "TT": "Tarif 1",
         "RD": [
             {
                 "TM": "2018-07-24T13:22:04,000+0200 S",
@@ -413,8 +414,7 @@ Beispiele zu den resultierenden JSON-basierten Formaten:
                 "RU": "kWh",
                 "RT": "AC",
                 "EF": "",
-                "ST": "G",
-                "TT": "Tarif 1"
+                "ST": "G"
             }
         ]
     }|{
