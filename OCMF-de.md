@@ -3,7 +3,7 @@
 
 **ENTWURF**
 
-Revision: 1.0
+Revision: 1.2
 
 
 ## Mitwirkende
@@ -15,7 +15,7 @@ Revision: 1.0
 | Mitwirkung | Martin Klässner, Roland Angerer            | has.to.be  |
 | Mitwirkung | Andreas Weber                              | Allego     |
 | Mitwirkung | Michael Staubermann                        | Webolution |
-
+| Mitwirkung | Mathieu Lémont                             | LEM        |
 
 
 ## Revisionsübersicht
@@ -24,6 +24,7 @@ Revision: 1.0
 
 | Revision | Inhalt                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Datum         
 |----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------
+| 1.2.0    | Cable loss Compensation data, definition of new parameters used for compensating Energy loss due to EVSE's charging Cable Resistance
 | 1.1.0    | Ad-hoc Laden, hinzufügen von Tarif Informationen.                                                                                                                                                                                                                               																																																																																																																																																																																												| 09.02.2023/FR
 | 1.0.2    | Entfernen der nicht mehr benötigten OBIS Code Tabelle, welche für das gelöschte  Binärformat benötigt wurde. Hinzufügen von Best Practice Beispielen für eine einheitlicher Umsetzung und Übertragung der OCMF Datensätze über OCPP  zu ermöglichen.                                                                                                                                                                                                                             																																																																																																																																												| 15.02.2020/FR
 | 1.0.1    | Definition der Bedeutung der Versionsnummern. Genauere Definition zum Aufbau des Formats. Löschen Binärformat und Übertragungsformat (Eine Transformation ist nicht ohne Neuberechnung der Signatur möglich).                                                                                                                                                                                                                             																																																																																																																																																						| 15.02.2020/FR
@@ -275,7 +276,8 @@ Transaktionsbezug besteht, fehlt diese Gruppe von Feldern.
 | IF   | Array of  String |0..4 | Identification-Flags: Detailaussagen zur Nutzerzuordnung, dargestellt durch einen oder mehrere Bezeichner aus Tabelle 12 bis Tabelle 15. Die Bezeichner werden stets als String- Elemente in einem Array notiert. Auch ein oder kein Element muss als Array notiert werden.                                |
 | IT   | String           |1..1 | Identification-Type: Typ der Identifikationsdaten, Bezeichner siehe Tabelle 16                                                                                                                                                                                                                             |
 | ID   | String           |0..1 | Identification-Data: Die eigentlichen Identifikationsdaten entsprechend des Typs aus Tabelle 16, also z.B. eine Hex-Codierte UID entsprechend ISO14443.                                                                                                                                                    |
-| TT   | String (0..250)  |0..1 |    TarifText: Text zur Identifikation eines eindeutigen Tarifes. Dieses Feld ist für die Tarifbezeichnung in "Direct Payment" Anwendungsfall gedacht.                                                                                                                                               |
+| TT   | String (0..250)  |0..1 | TarifText: Text zur Identifikation eines eindeutigen Tarifes. Dieses Feld ist für die Tarifbezeichnung in "Direct Payment" Anwendungsfall gedacht.                                                                                                                                                         |
+| UC   | object           |1..3 | UserCable: Characteristics of EVSE's charging cable used for identifying and processing cable compensation algorythm. Parameters of these characteristics are defined in Table 23                                                                                                                                                                                                |
 <small>Tabelle 4</small>
 
 ##### Zuordnung des Ladepunktes
@@ -405,6 +407,11 @@ Beispiele zu den resultierenden JSON-basierten Formaten:
         "IT": "ISO14443",
         "ID": "1F2D3A4F5506C7",
         "TT": "Tarif 1",
+		"UC": {
+			"UN": "cable_n",
+			"UI": 0,
+			"UR": 0
+			},
         "RD": [
             {
                 "TM": "2018-07-24T13:22:04,000+0200 S",
@@ -632,6 +639,16 @@ Zuordnungen bis zu 40 Byte Länge vorgesehen.
 | 6     | ECDSA-secp384r1                                | ECDSA                   | secp384r1      | 384 bit              | 96            |
 | 7     | ECDSA-brainpool384r1                           | ECDSA                   | brainpool384r1 | 384 bit              | 96            |
 <small>Tabelle 22: Vordefinierte Sclüsseltypen</small>
+
+### Cable Loss Compensation parameters
+The cable data consists in an object under the key "UC". It shall contain Cable Resistance value and may contain optionnal tracaebility parameters, as explained in following table.
+
+| Key: | Typ:           |Kard| Beschreibung:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|------|----------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| UN   | String (0..20) |0..1| This parameter is optional. A meter can use this value for adding a tracaebility text for justifying cable characteristics.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| UI   | Number         |0..1| This parameter is optional. A meter can use this value for adding a tracaebility ID number for justifying cable characteristics from an Look up table specified in meter's documentation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| UR   | Number         |1..1| This parameter is mandatory. A meter shall use this value for specifying the Cable Resistance Value used in cable loss compensation computation. The unit of this value shall be specified in Meter's documentation; it can be  mOhm or µOhm.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+<small>Tabelle 23</small>
 
 
 ## Best Practice - Zusätzliche OCPP Configuration Keys
