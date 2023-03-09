@@ -174,7 +174,6 @@ Das Format besteht aus mehreren Sektionen:
 1. **Header** zur eindeutigen Kennzeichnung des Formats
 2. Abschnitt mit den eigentlichen **Nutzdaten**
 3. Signatur über die Nutzdaten
-4. Optional: Public-Key
 
 Die Inhalte des Datensatzes dienen als Eingabeformat in die [Link](https://transparenz.software/ Transparenz-Software). Die [Link](https://transparenz.software/ Transparenz-Software) ist online  für jedermann verfügbar und kann zur Validierung des Datensatzes genutzt werden.
 
