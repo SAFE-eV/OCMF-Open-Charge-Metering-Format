@@ -8,19 +8,19 @@ Revision: 1.0
 
 ## Mitwirkende
 
-| Rolle      | Verantwortlicher                           | Firma      |
-|------------|--------------------------------------------|------------|
-| Verfasser  | Andreas Mull, ABL (AM), Daniel Müller (DM) | ABL        |
-| Editor     | Gerhard Weidinger, Riegler Florian (FR)    | KEBA       |
-| Mitwirkung | Martin Klässner, Roland Angerer            | has.to.be  |
-| Mitwirkung | Andreas Weber                              | Allego     |
-| Mitwirkung | Michael Staubermann                        | Webolution |
+| Rolle      | Verantwortlicher                           | Firma                                    |
+|------------|--------------------------------------------|------------------------------------------|
+| Verfasser  | Andreas Mull, ABL (AM), Daniel Müller (DM) | [ABL](https://www.abl.de/)               |
+| Editor     | Gerhard Weidinger, Florian Riegler (FR)    | [KEBA](https://www.keba.com/)            |
+| Mitwirkung | Martin Klässner, Roland Angerer            | [has.to.be](https://has-to-be.com/)      |
+| Mitwirkung | Andreas Weber                              | [Allego](https://www.allego.eu/)         |
+| Mitwirkung | Michael Staubermann                        | [Webolution](https://www.webolution.de/) |
 
 
 
 ## Revisionsübersicht
 
-Änderungen gegenüber der vorherigen Version sind Änderungsnachverfolgung gekennzeichnet.
+Änderungen gegenüber der vorherigen Version sind durch Änderungsnachverfolgung gekennzeichnet.
 
 | Revision | Inhalt                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Datum         
 |----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------
@@ -39,12 +39,12 @@ Revision: 1.0
 
 ### Ziel
 
-Ziel dieses Konzepts ist es, ein unabhängiges und allgemein verwendbares Datenformat zur Erfassung eichrechtlich relevanter Zählerablesungen von Ladestationen zu beschreiben. Ferner kann dieses Konzept als Diskussionsgrundlage für eine Verwertung im DKE dienen. Außerdem soll es zur Implementierung der Auswertung und Signaturprüfung des Formats durch die im Rahmen der SAFE-Initiative zu schaffende Transparenz-Software dienen.
+Ziel dieses Konzepts ist es, ein unabhängiges und allgemein verwendbares Datenformat zur Erfassung eichrechtlich relevanter Zählerablesungen von Ladestationen zu beschreiben. Ferner kann dieses Konzept als Diskussionsgrundlage für eine Verwertung im DKE dienen. Außerdem soll es zur Implementierung der Auswertung und Signaturprüfung des Formats durch die im Rahmen der SAFE-Initiative zu schaffende [Transparenz-Software](https://transparenz.software/) dienen.
 
 Zum Zeitpunkt der Erstellung dieses Dokuments ist kein einheitliches Datenformat zur Übermittlung von signierten Zählerständen auf Normungsebene verabschiedet. Eine entsprechende Anwendungsrichtlinie ist in Entstehung befindlich. Das vorgelegte Datenformat entstammt einem internen Entwurf von ABL und wurde mit has.to.be und KEBA diskutiert.
 
-Ein einheitliches Format bringt den Vorteil der Interoperabilität und ermöglicht eine einheitliche VerifizierungsSoftware beim Betreiber und dem Endbenutzer.
-Das hier dargestellte Konzept orientiert sich an dem Ende-zu-Ende Sicherungskonzept für eine eichrechtlich günstige Lösung („GL“) für die Übertragung von Messdaten auf Fernanzeigen von Dr. Martin Kahmann [MEMOGL]. Weiter baut es auf das ABL-interne Konzept zur Eichrechtskonformität auf.
+Ein einheitliches Format bringt den Vorteil der Interoperabilität und ermöglicht eine einheitliche Verifizierungs-Software beim Betreiber und dem Endbenutzer.
+Das hier dargestellte Konzept orientiert sich an dem Ende-zu-Ende-Sicherheitskonzept für eine eichrechtlich günstige Lösung („GL“) für die Übertragung von Messdaten auf Fernanzeigen von Dr. Martin Kahmann [MEMO-GL]. Weiter baut es auf das ABL-interne Konzept zur Eichrechtskonformität auf.
 
 Dieses Dokument ist wie folgt gegliedert: Zunächst wird eine Einordnung und Darstellung der Übermittlung des
 Datenformats gegeben, in den weiteren Sektionen wird das Datenformat erläutert.
@@ -52,14 +52,13 @@ Datenformats gegeben, in den weiteren Sektionen wird das Datenformat erläutert.
 
 ### Lizenz
 
-Dieses Dokument wird unter der *Creative Commons Attribution-NoDerivatives 4
-.0 International Public License* zur Verfügung gestellt (https://creativecommons.org/licenses/by-nd/4.0/legalcode).
+Dieses Dokument wird unter der *Creative Commons Attribution-NoDerivatives 4.0 International Public License* zur Verfügung gestellt (https://creativecommons.org/licenses/by-nd/4.0/legalcode).
 
 
 ### Referenzen
 
  - OCPP 1.5: Open Charge Alliance: Open Charge Point Protocol – Interface description between Charge Point and Central System, Version 1.5, Stand: 8. Juni 2012 
- - MEMO-GL: Messsysteme für Ladeeinrichtungen: Ende-zu-Ende-Sicherungskonzept für eine eichrechtlich günstige Lösung („GL“) für die Übertragung von Messdaten auf Fernanzeigen, Dr. Martin Kahmann, Braunschweig 
+ - MEMO-GL: Messsysteme für Ladeeinrichtungen: Ende-zu-Ende-Sicherheitskonzept für eine eichrechtlich günstige Lösung („GL“) für die Übertragung von Messdaten auf Fernanzeigen, Dr. Martin Kahmann, Braunschweig 
  - OBIS: IEC 62056-6-1 und -6-2.
  - JSON: Einführung in JSON, https://www.json.org/json-de.html (Abruf: 2018-04-04)
 
@@ -85,65 +84,62 @@ Dieses Dokument wird unter der *Creative Commons Attribution-NoDerivatives 4
 * SHA: Secure Hash Algorithm
 * TLS: Transport Layer Security
 * UID: Unique IDentification
-* UTC: Universal Time Coordinated
+* UTC: Coordinated Universal Time
 
 ### 1.5	Versionierung des Dokuments
 
 Die Versionsnummer dieses Dokuments ist folgendermaßen aufgebaut:
 
 **Major Version:**
-Änderungen an dieser Stelle bedeuten, dass sich das Format grundlegend geändert hat. Es wurden Änderungen am Format vorgenommen die nicht mehr mit den Vorgängerversionen kompatibel sind.
+Änderungen an dieser Stelle bedeuten, dass sich das Format grundlegend geändert hat. Es wurden Änderungen am Format vorgenommen, die nicht mehr mit den Vorgängerversionen kompatibel sind.
 
 **Minor:**
-Das Format wurde ergänzt neue Felder bzw. die Werte eines Feldes wurden hinzugefügt (
-Änderungen am Format. Abwärtskompatibilität ist gegeben).
+Das Format wurde ergänzt; neue Felder bzw. die Werte eines Feldes wurden hinzugefügt (Änderungen am Format. Abwärtskompatibilität ist gegeben).
 
 **Revision:**
 Änderung an der Dokumentation. Keine Änderung am Format. Durch eine Erhöhung der Revision wird das Format an sich nicht geändert. Die Dokumentation wird angepasst bzw. verbessert.
 
 Beispiel: 1.0.2
-1 = Major
-0 = Minor
-2 = Revision
+* 1 = Major
+* 0 = Minor
+* 2 = Revision
 
 
 ## Übermittlung signierter Zählerstände
 
 ### Einbettung in OCPP
 
-Bereits OCPP Version 1.5 erlaubt im Rahmen der MeterValue.req und StopTransaction.req -Nachrichten die simultane Übermittlung einer beliebigen Anzahl von MeterValue-Objekten. In jedem solchen Objekt kann wiederum ein Zeitstempel zusammen mit einem oder mehreren Ablesungswerten notiert sein. Jeder Wert kann optional durch Attribute begleitet werden, eines davon vom Enum-Typ ValueFormat, der zwei mögliche Werte besitzt:
+Bereits OCPP Version 1.5 erlaubt im Rahmen der MeterValue.req und StopTransaction.req-Nachrichten die simultane Übermittlung einer beliebigen Anzahl von MeterValue-Objekten. In jedem solchen Objekt kann wiederum ein Zeitstempel zusammen mit einem oder mehreren Ablesungswerten notiert sein. Jeder Wert kann optional durch Attribute begleitet werden, eines davon vom Enum-Typ ValueFormat, der zwei mögliche Werte besitzt:
 
- * Raw: Data is to be interpreted as integer/decimal numeric data.
- * SignedData: Data is represented as a signed binary data block, encoded as hex data.
+* Raw: Data is to be interpreted as integer/decimal numeric data.
+* SignedData: Data is represented as a signed binary data block, encoded as hex data.
 
 _Quelle: [OCPP 1.5]_
 
 Damit ist es möglich, die von OCPP vorgesehene Funktionalität weiterhin zu nutzen und mit der Möglichkeit der Übermittlung von signierten Zählerwerten zu kombinieren.
 
-Das hier vorgestellte Datenformat ist folglich gedacht zur parallelen Übermittlung eines solchen SignedData„Wertes“ neben den bisherigen Raw-Werten.
+Das hier vorgestellte Datenformat ist folglich gedacht zur parallelen Übermittlung eines solchen SignedData-„Wertes“ neben den bisherigen Raw-Werten.
 
-Während die Ablesung der bisherigen Werte evtl. mit einer nicht eichrechtskonformen (OCPP-basierten) Zeit
-geschieht, basieren die signierten Zählerwerte jedoch auf einer solchen. Sogar die zwei resultierenden Zeiten
-können getrennt in zwei MeterValue-Objekten korrekt dargestellt werden.
+Während die Ablesung der bisherigen Werte evtl. mit einer nicht eichrechtskonformen (OCPP-basierten) Zeit geschieht, basieren die signierten Zählerwerte jedoch auf einer solchen. Sogar die zwei resultierenden Zeiten können getrennt in zwei MeterValue-Objekten korrekt dargestellt werden.
 
 Dieser Mechanismus wird genutzt im Rahmen von:
 
- - Beginn einer Transaktion (StartTransaction)
- - Ablesungen während einer Transaktion (MeterValues)
- - Ende der Transaktion (StopTransaction)
- - Charge Data Record über die gesamte Transaktion mit Werten zu Begin und Ende (optional)
- - Ablesungen für sogenanntes „Fiscal-Metering“ (MeterValuesAlignedData): Dabei wird kein Bezug zu laufenden Transaktionen erfasst, sondern nur die absoluten Zählerwerte aller Ladepunkte zu vorher bestimmten Zeitpunkten.
+- Beginn einer Transaktion (StartTransaction)
+- Ablesungen während einer Transaktion (MeterValues)
+- Ende der Transaktion (StopTransaction)
+- Charge Data Record über die gesamte Transaktion mit Werten zu Begin und Ende (optional)
+- Ablesungen für sogenanntes „Fiscal-Metering“ (MeterValuesAlignedData): Dabei wird kein Bezug zu laufenden Transaktionen erfasst, sondern nur die absoluten Zählerwerte aller Ladepunkte zu vorher bestimmten Zeitpunkten.
 
 Anzumerken ist, dass in der Regel eichrechtlich relevant folgende Ablesungen sind:
 
- - Beginn- und Endwert in Bezug auf den Ladevorgang
- - Tarifwechsel (gängige Praxis nur zur Viertelstunde der Uhr)
+- Beginn- und Endwert in Bezug auf den Ladevorgang
+- Tarifwechsel (gängige Praxis nur zur Viertelstunde der Uhr)
 
 Damit ist folgende OCPP-Konfiguration typischerweise sinnvoll:
 
- - ClockAlignedDataInterval=900 (15min)
- - MeterValuesAlignedData=Active.Energy.Register.Import
- - Eine Controller-Software sorgt für die Erzeugung zusätzlicher MeterValues mit signierten Werten zu Beginn und Ende des Ladevorgangs über den simplen Integer-Wert hinaus, der Bestandteil der StartTransaction/StopTransaction-Nachrichten sein kann.
+- ClockAlignedDataInterval = 900 (15 min)
+- MeterValuesAlignedData = Active.Energy.Register.Import
+- Eine Controller-Software sorgt für die Erzeugung zusätzlicher MeterValues mit signierten Werten zu Beginn und Ende des Ladevorgangs über den simplen Integer-Wert hinaus, der Bestandteil der StartTransaction/StopTransaction-Nachrichten sein kann.
 
 ### Signierungs- und Verifikations-Prozess
 
@@ -152,7 +148,7 @@ Ursprungsform hergestellt werden. Auf dieser Ursprungsform erfolgt eine Hash-Ber
 
 Zur Herstellung der Ursprungsform werden Header und Signatur vom Datensatz abgetrennt. Der Public-Key kommt ggf. über einen getrennten Übertragungsweg zur Prüfung.
 
-Damit sind im vereinheitlichten Datensatz, die Signatur und der Public-Key voneinander getrennt dargestellt.
+Damit sind im vereinheitlichten Datensatz die Signatur und der Public-Key voneinander getrennt dargestellt.
 
 Der Zusammenhang zwischen mehreren einzelnen Datensätzen wird durch die durchgehende Paginierung
 gewährleistet. Diese ist neben der Signatur von einer Prüfkomponente zu verifizieren. Der erste Datensatz
@@ -167,7 +163,7 @@ Prüfung führen. Außerdem müssen alle Datensätze von derselben Quelle (Serie
 Das Datenformat soll möglichst einfach aufgebaut und vom versierten Benutzer nachvollziehbar sein. Aus
 Herstellersicht ist ein modulares Datenformat wünschenswert, damit zukünftige Erweiterungen umgesetzt
 werden können. Ein weiteres Anliegen ist, den Prüfprozess möglichst generisch, d.h. auch für
-andere Quellformate anwendbar, zu gestalten. Aus diesem Grund wurde eine Header Sektion in das Format aufgenommen.
+andere Quellformate anwendbar, zu gestalten. Aus diesem Grund wurde eine Header-Sektion in das Format aufgenommen.
 
 Das Format besteht aus mehreren Sektionen:
 
@@ -175,44 +171,40 @@ Das Format besteht aus mehreren Sektionen:
 2. Abschnitt mit den eigentlichen **Nutzdaten**
 3. Signatur über die Nutzdaten
 
-Die Inhalte des Datensatzes dienen als Eingabeformat in die [Link](https://transparenz.software/ Transparenz-Software). Die [Link](https://transparenz.software/ Transparenz-Software) ist online  für jedermann verfügbar und kann zur Validierung des Datensatzes genutzt werden.
+Die Inhalte des Datensatzes dienen als Eingabeformat in die [Transparenz-Software](https://transparenz.software/). Die Transparenz-Software ist online für jedermann verfügbar und kann zur Validierung des Datensatzes genutzt werden.
 
 In den folgenden Kapiteln wird das Datenformat für die Darstellung und Übertragung der signierten Zählerwerte definiert.
 
-## JSON-basiertes OCMF Format
+## JSON-basiertes OCMF-Format
 
 Für die einzelnen Sektionen des Formates wurde die JSON-Notation zur besseren Lesbarkeit und einfacheren Nachvollziehbarkeit gewählt. Um Datenvolumen einzusparen, wurden folgenden Maßnahmen getroffen:
 
- - Bezeichner sind kurz gehalten (da einige ohnehin erklärungsbedürftig sind, geht hier nicht viel Klarheit
-verloren)
- - An einigen Stellen wurde bewusst auf Kapselung verzichtet. Anstelle sind die Bezeichner kanonisiert.
+- Bezeichner sind kurz gehalten (da einige ohnehin erklärungsbedürftig sind, geht hier nicht viel Klarheit verloren)
+- An einigen Stellen wurde bewusst auf Kapselung verzichtet. Stattdessen sind die Bezeichner kanonisiert.
 
-Die Sektionen innerhalb des Datenformates werden mit dem Sonderzeichen „|“ getrennt. Innerhalb der Sektionen entspricht das Format der JSON-Notation. Somit ist die Nutzung des Sonderzeichens „|“ innerhalb der Sektionen nicht gestattet.
+Die Sektionen innerhalb des Datenformates werden mit dem Sonderzeichen „`|`“ (Pipe) getrennt. Innerhalb der Sektionen entspricht das Format der JSON-Notation. Somit ist die Nutzung des Sonderzeichens „`|`“ innerhalb der Sektionen nicht gestattet.
 
-Dass das Format entsprechend der JSON-Notation mit Leerzeichen und Zeilenvorschüben an
-beliebiger Stelle, genannt White-Space, zur Darstellung angereichert werden kann erleichtert es einem Nutzer
-zudem die Lesbarkeit.
+Dass das Format entsprechend der JSON-Notation mit Leerzeichen und Zeilenvorschüben an beliebiger Stelle, genannt White-Space, zur Darstellung angereichert werden kann, erleichtert zudem die Lesbarkeit.
 
-ValidierungZwischen Signierung und Validierung darf die Nutzdatensektion nicht manipuliert werden (entfernen und Hinzufügen von White-Spaces), da ansonsten eine positive Validierung nicht möglich ist.
+Zwischen Signierung und Validierung darf die Nutzdatensektion nicht manipuliert werden (z.B. durch Entfernen und Hinzufügen von White-Spaces), da ansonsten eine positive Validierung nicht möglich ist.
 
-Im Folgenden werden die verschiedenen Abschnitte des Formats erläutert. Weiterhin wird ein Beispiel gegeben.
+Im Folgenden werden die verschiedenen Abschnitte des Formats erläutert. Danach wird ein [Beispiel](#Beispiel) gegeben.
 
 ### Sektionen
 
 Am Anfang des Formats befindet sich ein Header zur eindeutigen Kennzeichnung des Formats.
-Durch Pipe-Zeichen getrennt folgen Nutzdatensektion und Signatursektion.
+Durch Pipe-Zeichen `|` getrennt, folgen Nutzdatensektion und Signatursektion.
 Damit ergibt sich für die Sektionen folgender Aufbau:
 
     OCMF|<Nutzdatensektion>|<Signatursektion>
 
-Dabei sind die Worte Nutzdatensektion und Signatursektion durch die Inhalte der jeweiligen Sektionen zu
-ersetzen.
+Dabei sind die Platzhalter `<Nutzdatensektion>` und `<Signatursektion>` durch die Inhalte der jeweiligen Sektionen zu ersetzen.
 
 
 
 #### Header
 
-Der Header dient zur eindeutigen Kennzeichnung des Übertragungsformats. Im Falle von OCMF ist in dieser Sektion der String „OCMF“ anzugeben.
+Der Header dient zur eindeutigen Kennzeichnung des Übertragungsformats. Im Falle von OCMF ist in dieser Sektion der String „`OCMF`“ anzugeben.
 
 #### Nutzdatensektion
 
@@ -225,9 +217,9 @@ Die Angaben in diesem Abschnitt beziehen sich vorzugsweise auf die signaturerzeu
 
 | Key: | Typ    |Kard.| Beschreibung:                                                                                                                                                                                                                                                                                |
 |------|--------|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| FV   | String |0..1 | Format-Version: Version des Datenformats in der Darstellung <major>.<minor> Die Versionsangabe wird entsprechend der Version dieses Dokumentes codiert, d.h. 0.4 entspricht Major 0 und Minor 4. Die Revision (dritte Stelle) wird nicht übertragen, da dies am Format selbst nichts ändert. |
+| FV   | String |0..1 | Format-Version: Version des Datenformats in der Darstellung `<major>.<minor>`. Die Versionsangabe wird entsprechend der Version dieses Dokumentes codiert, d.h. 0.4 entspricht Major 0 und Minor 4. Die Revision (dritte Stelle) wird nicht übertragen, da dies am Format selbst nichts ändert. |
 | GI   | String |0..1 | Gateway-Identification: Bezeichner des Herstellers für das System, welches die vorliegenden Daten erzeugt hat (Hersteller, Modell, Variante, etc.).                                                                                                                                          |
-| GS   | String |0..1 | Gateway-Serial: Seriennummer des o.g. Systems Dieses Feld ist bedingt obligatorisch.                                                                                                                                                                                                         | 
+| GS   | String |0..1 | Gateway-Serial: Seriennummer des o.g. Systems. Dieses Feld ist bedingt obligatorisch.                                                                                                                                                                                                         | 
 | GV   | String |0..1 | Gateway-Version: Versionsbezeichnung des Herstellers für die SW auf o.g.                                                                                                                                                                                                                     |
 <small>Tabelle 1</small>
 
@@ -238,7 +230,7 @@ Ablesungen über die Zähler nachvollziehbar ein. Für die Paginierung stehen me
 jeder Kontext hat einen eigenen Zählerstand. Der jeweilige Paginierungszähler wird monoton aufsteigend mit
 einem Inkrement von 1 gezählt. D.h. aufeinander folgende Werte des Paginierungszählers zählen fortlaufend im Raum der natürlichen Zahlen.
 
-Der Kontext für Transaktionen ist in jedem Fall zu unterstützen. Der Kontext Fiscal ist optional und kann von der Signaturkomponente optional
+Der Kontext für Transaktionen ist in jedem Fall zu unterstützen. Der Kontext „Fiscal“ ist optional und kann von der Signaturkomponente optional
 unterstützt werden, falls auch außerhalb von Transaktionen signierte Ablesungen gewünscht sind.
 
 
@@ -256,7 +248,7 @@ Daten identifiziert wurde.
 |------|--------|-----|----------------------------------------------------------------------------|
 | MV   | String |0..1 | Meter-Vendor: Hersteller-Identifikation des Zählers, Name des Herstellers. |
 | MM   | String |0..1 | Meter-Model: Modell-Identifikation des Zählers.                            |
-| MS   | String |1..1 | Meter-Serial: Seriennummer des Zählers Dieses.                             |
+| MS   | String |1..1 | Meter-Serial: Seriennummer des Zählers.                                    |
 | MF   | String |0..1 | Meter-Firmware: Firmware-Version des Zählers.                              |
 <small>Tabelle 3</small>
 
@@ -269,12 +261,12 @@ Transaktionsbezug besteht, fehlt diese Gruppe von Feldern.
 
 | Key: | Typ:             |Kard.| Beschreibung:                                                                                                                                                                                                                                                                                              |
 |------|------------------|-----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| IS   | Boolean          |1..1 | Identification-Status: Genereller Status zur Benutzerzuordnung: true: Benutzer erfolgreich zugeordnet, false: Benutzer nicht zugeordnet.                                                                                                                                                                   |
+| IS   | Boolean          |1..1 | Identification-Status: Genereller Status zur Benutzerzuordnung: true: Benutzer erfolgreich zugeordnet, false: Benutzer nicht zugeordnet.                                                                                                                                                               |
 | IL   | String           |0..1 | Identification-Level: Aufgeschlüsselter Gesamtstatus der Benutzerzuordnung, dargestellt durch einen Bezeichner aus Tabelle 10.                                                                                                                                                                             |
-| IF   | Array of  String |0..4 | Identification-Flags: Detailaussagen zur Nutzerzuordnung, dargestellt durch einen oder mehrere Bezeichner aus Tabelle 12 bis Tabelle 15. Die Bezeichner werden stets als String- Elemente in einem Array notiert. Auch ein oder kein Element muss als Array notiert werden.                                |
+| IF   | Array of  String |0..4 | Identification-Flags: Detailaussagen zur Nutzerzuordnung, dargestellt durch einen oder mehrere Bezeichner aus Tabelle 12 bis Tabelle 15. Die Bezeichner werden stets als String-Elemente in einem Array notiert. Auch ein oder kein Element muss als Array notiert werden.                               |
 | IT   | String           |1..1 | Identification-Type: Typ der Identifikationsdaten, Bezeichner siehe Tabelle 16                                                                                                                                                                                                                             |
-| ID   | String           |0..1 | Identification-Data: Die eigentlichen Identifikationsdaten entsprechend des Typs aus Tabelle 16, also z.B. eine Hex-Codierte UID entsprechend ISO14443.                                                                                                                                                    |
-| TT   | String (0..250)  |0..1 |    TarifText: Text zur Identifikation eines eindeutigen Tarifes. Dieses Feld ist für die Tarifbezeichnung in "Direct Payment" Anwendungsfall gedacht.                                                                                                                                               |
+| ID   | String           |0..1 | Identification-Data: Die eigentlichen Identifikationsdaten entsprechend des Typs aus Tabelle 16, also z.B. eine Hex-Codierte UID entsprechend ISO 14443.                                                                                                                                                   |
+| TT   | String (0..250)  |0..1 |    TarifText: Text zur Identifikation eines eindeutigen Tarifes. Dieses Feld ist für die Tarifbezeichnung im „Direct Payment“-Anwendungsfall gedacht.                                                                                                                                               |
 <small>Tabelle 4</small>
 
 ##### Zuordnung des Ladepunktes
@@ -301,7 +293,7 @@ Ein Stromausfall während zeitbasierter Abrechnung stellt ein Fehlerereignis dar
 |------|--------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | TM   | String |1..1| Time: Angabe zur Systemzeit der Ablesung und Synchronisationszustand. <br> Die Zeit wird nach ISO 8601 mit einer Auflösung von Millisekunden beschrieben. Das Format wird dementsprechend nach folgendem Schema gebildet: <br> `<Jahr>-<Monat>-<Tag>T<Stunden>:<Minuten>:<Sekunden>,<Millisekunden><Zeitzone>` <br> Dabei wird das Jahr vierstellig dargestellt, Monat, Tag, Stunden, Minuten und Sekunden zweistellig, Millisekunden dreistellig. Die Angabe zur Zeitzone besteht aus einem Vorzeichen und einer vierstelligen Angabe für Stunden und Minuten. Beispiel: <br> `2018-07-24T13:22:04,000+0200` <br> Der Synchronisationszustand besteht aus einem Großbuchstaben als Bezeichner. Dieser wird, getrennt durch ein Leerzeichen, der Zeit hinangestellt. Verfügbare Zustände siehe Tabelle 18.                                                             |
 | TX   | String |0..1| Transaction: Ablesungsgrund, Bezug der Ablesung zur Transaktion, notiert als Großbuchstabe: <br> B – Beginn der Transaktion <br> C – Charging = während der Ladung (kann optional verwendet werden) <br> _ X – Exception = Fehler während der Ladung, Transaktion wird fortgesetzt, Zeit und/oder Energie sind ab dieser Ablesung (einschl.) nicht mehr verwertbar. <br> E – Ende der Transaktion, alternativ genauere Codes: <br> _ L – Ladevorgang wurde lokal beendet <br> _ R – Ladevorgang wurde aus der Ferne beendet <br> _ A – (Abort) Ladevorgang wurde durch Fehler abgebrochen <br> _ P – (Power) Ladevorgang wurde durch Stromausfall beendet <br> S – Suspended = Transaktion aktiv, aber gerade keine Ladung (kann optional verwendet werden) <br> T – Tarifwechsel <br> Dieses Feld fehlt, wenn kein Transaktionsbezug vorhanden ist. (Fiscal Metering) |
-| RV   | Number |1..1| Reading-Value: Der Wert der Ablesung Hier wird auf das JSON-Datenformat Number zurückgegriffen, dies erlaubt unter anderem eine genaue Auszeichnung der gültigen Nachkommastellen. Die Darstellung darf durch weitere Behandlungsmethoden (z.B. Verarbeitung durch JSON-Parser) jedoch nicht umgeformt werden (Umschreibung der Zahl mit anderem Exponenten, Kürzung von Nachkommastellen, etc.) da damit die Darstellung der physikalischen Größe und damit potentiell die Anzahl der gültigen Stellen verändert würde. Entsprechend der Anwendungsregel wird empfohlen, den Messwert mit zwei Nachkommastellen Genauigkeit darzustellen, falls es sich um kWh handelt.                                                                                                                                                                                               |
+| RV   | Number |1..1| Reading-Value: Der Wert der Ablesung. Hier wird auf das JSON-Datenformat Number zurückgegriffen, dies erlaubt unter anderem eine genaue Auszeichnung der gültigen Nachkommastellen. Die Darstellung darf durch weitere Behandlungsmethoden (z.B. Verarbeitung durch JSON-Parser) jedoch nicht umgeformt werden (Umschreibung der Zahl mit anderem Exponenten, Kürzung von Nachkommastellen, etc.) da damit die Darstellung der physikalischen Größe und damit potentiell die Anzahl der gültigen Stellen verändert würde. Entsprechend der Anwendungsregel wird empfohlen, den Messwert mit zwei Nachkommastellen Genauigkeit darzustellen, falls es sich um kWh handelt.                                                                                                                                                                                               |
 | RI   | String |0..1| Reading-Identification: Bezeichner, welche Größe abgelesen wurde, gemäß OBIS-Code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         11                                                                                                            |
 | RU   | String |1..1| Reading-Unit: Einheit der Ablesung, z.B. kWh, gemäß Tabelle 19: Vordefinierte Einheiten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | RT   | String |0..1| Reading-Current-Type: Die vom Zähler gemessene Stromart, z.B. Wechselstrom oder Gleichstrom, gemäß Tabelle 20: Vordefinierte Stromarten. <br> Dieses Feld ist optional. Es ist kein Default-Wert definiert.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -335,8 +327,8 @@ Wertzuordnungen bezüglich der Signaturdaten.
 
 | Key: | Typ:   |Kard| Beschreibung:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 |------|--------|----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| SA   | String |1..1| Signature-Algorithm: Wählt den zur Signaturbildung verwendeten Algorithmus aus. Dies umfasst den Signatur-Algorithmus, dessen Parameter und den Hash-Algorithmus der auf den zu signierenden Daten angewendet wird. Diese Angabe ist optional. Wird sie ausgelassen, ist der Default-Wert gültig. Tabelle 21 zeigt, welche Werte möglich sind.                                       |
-| SE   | String |0..1| Signature-Encoding: Bezeichnet, wie die Signaturdaten kodiert sind, um im JSON-String abgelegt werden zu können. Diese Angabe ist optional. Wird sie ausgelassen, ist der Default-Wert gültig. Folgende Werte sind möglich: <p>hex – Die Signaturdaten sind im JSON-String hexadezimal codiert dargestellt (Default) <p>base64 – Die Signaturdaten sind entsprechend base64 abgelegt.|
+| SA   | String |1..1| Signature-Algorithm: Wählt den zur Signaturbildung verwendeten Algorithmus aus. Dies umfasst den Signatur-Algorithmus, dessen Parameter und den Hash-Algorithmus, der auf den zu signierenden Daten angewendet wird. Diese Angabe ist optional. Wird sie ausgelassen, ist der Default-Wert gültig. Tabelle 21 zeigt, welche Werte möglich sind.                                       |
+| SE   | String |0..1| Signature-Encoding: Bezeichnet, wie die Signaturdaten kodiert sind, um im JSON-String abgelegt werden zu können. Diese Angabe ist optional. Wird sie ausgelassen, ist der Default-Wert gültig. Folgende Werte sind möglich: <p>hex – Die Signaturdaten sind im JSON-String hexadezimal codiert dargestellt (Default). <p>base64 – Die Signaturdaten sind entsprechend base64 abgelegt.|
 | SM   | String |0..1| Signature-Mime-Type: Bezeichnet, wie die Signaturdaten zu interpretieren sind. Diese Angabe ist optional. Wird sie ausgelassen, ist der Default-Wert gültig. Folgende Werte sind möglich:<p>application/x-der – Ablage als ASN.1-codierte .der-Datei (Default)                                                                                                                       |
 | SD   | String |1..1| Signature-Data: Die eigentlichen Signaturdaten entsprechend obiger Formatangaben.                                                                                                                                                                                                                                                                                                    |
 <small>Tabelle 7: Signaturdatenfelder der Signatursektion</small>
@@ -363,13 +355,13 @@ wünschenswert. Folgende sind dazu reserviert:
 
 #### Bezug von Seriennummern, Ladepunkt und Public-Key
 
-Zum Aufbau eines Bezugs zwischen dem zur Signaturprüfung zu benutzenden Public-Key und des
-Ladepunktes dienen eine oder mehrere Seriennummern, alternativ kann auch eine direkte Identifikation des
+Zum Aufbau eines Bezugs zwischen dem zur Signaturprüfung zu benutzenden Public-Key und dem
+Ladepunkt dienen eine oder mehrere Seriennummern, alternativ kann auch eine direkte Identifikation des
 Ladepunktes per ID erfolgen.
 
 Die Public-Keys zum Ladepunkt müssen auf anderem Wege als diesem Protokoll (Out-of-Band) an die Prüfkomponente in Verbindung mit der verwendeten ID oder den Seriennummern übermittelt werden, z.B. über ein zentrales Register.
 
-Um eine Signaturkomponente eindeutig zu identifizieren werden in diesem Protokoll folgende Merkmakle definiert:
+Um eine Signaturkomponente eindeutig zu identifizieren, werden in diesem Protokoll folgende Merkmakle definiert:
 
  - Ist die Signaturkomponente dem Energiezähler zuzurechnen, reicht dessen Seriennummer.
  - Ist die Signaturkomponente selbst das Gateway und nur ein Ladepunkt wird bedient, reicht die Seriennummer des Gateways oder des Energiezählers.
@@ -426,7 +418,7 @@ Beispiele zu den resultierenden JSON-basierten Formaten:
 
 #### Hersteller und Modell des Zählers
 
-Die folgende Tabelle stellt die vordefinierten Werte für die Felder Hersteller und Modell des Zählers dar.
+Die folgende Tabelle stellt die vordefinierten Werte für die Felder „Hersteller“ und „Modell“ des Zählers dar.
 
 | Hersteller:     | Modell:                 |
 |-----------------|-------------------------|
@@ -472,8 +464,8 @@ Gruppen eingeteilt, die im Format nicht ausgezeichnet werden.
 | Status mit Zuordnung  | HEARSAY        | Die Zuordnung ist ungesichert; also z.B. durch Auslesen einer RFID-UID.                                                                    |
 |                       | TRUSTED        | Die Zuordnung kann in gewissem Maße vertraut werden, es gibt jedoch keine absolute Verlässlichkeit. Beispiel: Authorisierung durch Backend |
 |                       | VERIFIED       | Die Zuordnung wurde durch die Signaturkomponente und spezielle Maßnahmen verifiziert.                                                      |
-|                       | CERTIFIED      | Die Zuordnung wurde durch die Signaturkomponente verifiziert mit Hilfe einer kryptographischen Signatur die die Zuordnung zertifiziert.    |
-|                       | SECURE         | Die Zuordnung wurde durch eine sicheres Merkmal hergestellt (z.B. sichere RFID-Karte, ISO15118 mit Plug- and-Charge, etc.)                 |
+|                       | CERTIFIED      | Die Zuordnung wurde durch die Signaturkomponente verifiziert mit Hilfe einer kryptographischen Signatur, die die Zuordnung zertifiziert.    |
+|                       | SECURE         | Die Zuordnung wurde durch eine sicheres Merkmal hergestellt (z.B. sichere RFID-Karte, ISO 15118 mit Plug-and-Charge, etc.)                 |
 | Fehler                | MISMATCH       | Fehler; UIDs passen nicht zueinander.                                                                                                      |
 |                       | INVALID        | Fehler; Zertifikat nicht korrekt (Prüfung negativ).                                                                                        |
 |                       | OUTDATED       | Fehler; referenziertes Trust-Zertifikat abgelaufen.                                                                                        |
@@ -482,7 +474,7 @@ Gruppen eingeteilt, die im Format nicht ausgezeichnet werden.
 
 #### Details
 
-Dieses, Feld setzt sich aus vier Sub-Feldern zusammen und gibt Details zum Zustandekommen des Status der Benutzerzuordnung an.
+Dieses Feld setzt sich aus vier Sub-Feldern zusammen und gibt Details zum Zustandekommen des Status der Benutzerzuordnung an.
 Tabelle 11 beschreibt die Aufteilung in Subfelder, die darauf folgenden Tabellen beschreiben die jeweils
 gültigen Werte.
 
@@ -517,15 +509,15 @@ gültigen Werte.
 | OCPP_AUTH_TLS  | Transport-Layer-Security wurde zur Übertragung der Zuordnung per OCPP-Authorize-Methode benutzt.   |
 | OCPP_CACHE     | Zuordnung durch Authorization-Cache von OCPP                                                       |
 | OCPP_WHITELIST | Zuordnung durch White-List von OCPP                                                                |
-| OCPP_CERTIFIED | Ein Zertifikat des Backends welches die Nutzerzuordnung zertifiziert wurde eingesetzt.             |
+| OCPP_CERTIFIED | Ein Zertifikat des Backends, welches die Nutzerzuordnung zertifiziert, wurde eingesetzt.           |
 <small>Tabelle 13: Zuordnungsanteil OCPP</small>
 
 #### [Zuordnungsanteil ISO 15118](#iso15118)
 
-| Bezeichner:   | Beschreibung:                        |
-|---------------|--------------------------------------|
-| ISO15118_NONE | keine Nutzerzuordnung durch ISO15118 |
-| ISO15118_PNC  | Plug & Charge wurde benutzt          |
+| Bezeichner:   | Beschreibung:                         |
+|---------------|---------------------------------------|
+| ISO15118_NONE | keine Nutzerzuordnung durch ISO 15118 |
+| ISO15118_PNC  | Plug & Charge wurde benutzt           |
 <small>Tabelle 14: Zuordnungsanteil ISO 15118</small>
 
 #### [Zuordnungsanteil PLMN](#plmn)
@@ -539,7 +531,7 @@ gültigen Werte.
 
 #### Typ
 
-Tabelle 16 beschreibt die möglichen Typen von Nutzerzuordnungen, welche in dem Feld Typ als
+Tabelle 16 beschreibt die möglichen Typen von Nutzerzuordnungen, welche in dem Feld „Typ“ als
 vorzeichenlose Integer verwendet werden können. Diese Zuordnungen orientieren sich an den Vorgaben aus
 OCPP. Allerdings sieht OCPP derzeit (Version 1.5) nur 20 Zeichen für das Identifikationsmerkmal vor.
 Entsprechend der maximalen Länge einer IBAN (34 Zeichen) wurden für den Datenbereichs hier allerdings
@@ -563,7 +555,7 @@ Zuordnungen bis zu 40 Byte Länge vorgesehen.
 | 70      | LOCAL        | Lokal generierte ID. Kein genaues Format definiert, kann z.B. eine UUID sein. (OCPP 2.0)                                           |
 | 71      | LOCAL_1      | Lokal generierte ID, z.B. intern durch den Ladepunkt erzeugte ID. Kein genaues Format definiert. (bis OCPP 1.6)                    |
 | 72      | LOCAL_2      | Lokal generierte ID, für sonstige Fälle. Kein genaues Format definiert. (bis OCPP 1.6)                                             |
-| 80      | PHONE_NUMBER | Internationale Telefonnummer mit führendem „+‟.                                                                                    |
+| 80      | PHONE_NUMBER | Internationale Telefonnummer mit führendem „+“.                                                                                    |
 | 90      | KEY_CODE     | User-bezogener, privater Key-Code. Kein genaues Format definiert.                                                                  |
 <small>Tabelle 16: Typen der Nutzerzuordnung</small>
 
@@ -634,12 +626,12 @@ Zuordnungen bis zu 40 Byte Länge vorgesehen.
 
 
 ## Best Practice - Zusätzliche OCPP Configuration Keys
-Um einem OCPP Backend das Verhalten einer Ladestation mitzuteilen werden folgende zusätzliche OCPP Configuration keys von S.A.F.E empfohlen
+Um einem OCPP-Backend das Verhalten einer Ladestation mitzuteilen, werden folgende zusätzliche OCPP Configuration Keys von S.A.F.E empfohlen
 
 
-Erweiterung Config - Keys für OCPP:
-* **StopTransactionSignatureFormat**: Eine Signatur über Start und Stop Daten ODER getrennt (kann R oder RW sein, je nach Implementation) Diese Einstellung kann folgende Werte annehmen:
-    * **MR** MultipleReading (Start und Stop in einem OCMF Datensatz)
-    * **SR** SingleReading  (Start und Stop in zwei getrennten OCMF Datensätzen)
-* **StopTransactionSignatureContexts**: ReadingContext aus OCPP (CSL, RW). Ist die Liste leer werden alle Transaktionsdatensätze unsigniert übertragen.
-* **MeterValuesSignatureContexts**: Meter Values Trigger Punkte für die signierte OCMF Datensätze erzeugt werden sollen.  Mögliche Werte siehe ReadingContext aus OCPP (CSL, RW). Ist die Liste leer werden alle MeterValues-Datensätze unsigniert übertragen.
+Erweiterung Config-Keys für OCPP:
+* **StopTransactionSignatureFormat**: Eine Signatur über Start- und Stop-Daten ODER getrennt (kann R oder RW sein, je nach Implementation). Diese Einstellung kann folgende Werte annehmen:
+    * **MR** MultipleReading (Start und Stop in einem OCMF-Datensatz)
+    * **SR** SingleReading  (Start und Stop in zwei getrennten OCMF-Datensätzen)
+* **StopTransactionSignatureContexts**: ReadingContext aus OCPP (CSL, RW). Ist die Liste leer, werden alle Transaktionsdatensätze unsigniert übertragen.
+* **MeterValuesSignatureContexts**: Meter Values Trigger Punkte, für die signierte OCMF-Datensätze erzeugt werden sollen.  Mögliche Werte siehe ReadingContext aus OCPP (CSL, RW). Ist die Liste leer, werden alle MeterValues-Datensätze unsigniert übertragen.
