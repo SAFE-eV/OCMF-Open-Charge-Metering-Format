@@ -1,7 +1,5 @@
 ﻿# Open Charge Metering Format
 
-**DRAFT**
-
 **This english version is mainly auto-translated and needs revision.**
 
 Revision: 1.0
@@ -9,39 +7,29 @@ Revision: 1.0
 
 ## Contributors
 
-| Role | Responsible | Company |
-|------------|--------------------------------------------|------------|
-| Author | Andreas Mull, ABL (AM), Daniel Müller (DM) | ABL |
-| Editor | Gerhard Weidinger, Riegler Florian (FR) | KEBA |
-| Contribution | Martin Klässner, Roland Angerer | has.to.be  |
-| participation | Andreas Weber | Allego |
-| collaboration | Michael Staubermann | Webolution |
+| Role          | Responsible                                | Company    |
+|---------------|--------------------------------------------|------------|
+| Author        | Andreas Mull, ABL (AM), Daniel Müller (DM) | ABL        |
+| Editor        | Gerhard Weidinger, Riegler Florian (FR)    | KEBA       |
+| Contribution  | Martin Klässner, Roland Angerer            | has.to.be  |
+| participation | Andreas Weber                              | Allego     |
+| collaboration | Michael Staubermann                        | Webolution |
 
 ## Revision overview
 
 Changes from the previous version are marked with change tracking.
 
-|Revision | Content | Date         
-|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------
-| 1.1.0 | Ad-hoc loading, adding tariff information.                                                                                                                                                                                                                               																																																																																																																																																																																												| 02/09/2023/FR
-| 1.0.2 | Removal of the no longer needed OBIS code table, which was needed for the deleted binary format. Add best practice examples to enable consistent implementation and transfer of OCMF records via OCPP.                                                                                                                                                                                                                             																																																																																																																																												| 15.02.2020/FR
-| 1.0.1 | Definition of the meaning of the version numbers. More detailed definition on the structure of the format. Delete binary format and transmission format (transformation is not possible without recalculation of the signature).                                                                                                                                                                                                                             																																																																																																																																																						| 15.02.2020/FR
-| 1.0 | Final status for integration in transparency software. Feedback from SAFE AG engineering incorporated: Signature algorithm not in data-to-be-signed space after all, so that theoretically multiple different signatures can be appended independently. Reading type optional. Additional state on time status: relative time accounting based on info clock. OBIS codes expanded to applicable options according to comments from Mr. Weber.  | 21.02.2019/AM 
-| 0.5 | Further feedback from DKE/GAK 461.0.21 AP5 from January 2019 incorporated: Clarifications on pagination, reference of serial numbers, charge point and public key. Optional user data section for charging point assignment. Error index replaced by erroneous quantities; error during charge as reason for reading. Feedback from Mr. Weber on version 0.3 incorporated: Spiking, current types. Byte offset in binary descriptions removed, because they contradicted with StrEnum types. Feedback from Mr. Staubermann on elliptic curve cryptography: synonymous names of curves, correction of block lengths for public key types.                                                                                                                                                                                                                                                                                                                                                                                                              | 02/11/2019/AM 
-| 0.4 | Results and clarifications after feedback from conference calls with DKE/GAK 461.0.21 AP5: Document and format versions corrected; binary format clarified: Network byte order; pagination count clarified, pagination defined; signature device identification (gateway) placed above meter identification, integrated into general details, vendor renamed to gateway, serial number mandatory for either gateway or meter; user mapping: status split into general yes/no and mapping level, level split into groups; all status details other than yes/no are now optional. Usage of event counter clarified, pagination defined; note on accuracy for measured value; signature algorithm moved to signed area; signature algorithms extended by future candidates, key types analog; defaults provided with OCMF version. Authorization features extended according to OCPP 2.0; extension points for OCMF defined in user data and signature sections. | 11.01.2019/AM 
-| 0.3      | State of the meter added for incorrectly read values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 11.12.2018/DM 
-| 0.2      | Binary format adapted according to the changes with 0.1, description of the signature algorithm concretized, StrEnum type introduced as flexible extension point into the binary format.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 16.08.2018/AM 
-| 0.1      | This document is based on ABL data format version 1.14 and replaces it. Initial version after discussion of ABL data format (v1.13) with KEBA and has.to.be: decoupling of the binary transmission format from the custody transfer relevant part, JSON as primary transmission format. Header and overall structure defined. Fields aligned with draft "Requirements for the data structure for metering tuples in electromobility" of 26.04.2018. JSON format structurally simplified, keys shortened. Possibility of multiple readings in one data set created. Firmware version of the meter optionally added. Errors as abort reasons for charging processes. Hash type for signature defined.                                                                                                                                                                                                                                                                                                                                    | 09.08.2018/AM 
-
-
-
-
-
-
-
-
-
-
+|Revision  | Content                                                                                                                                                                                                                                   																																																																																																																																																																																														| Date         
+|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------
+| 1.1.0    | Ad-hoc loading, adding tariff information.                                                                                                                                                                                                                               																																																																																																																																																																																						| 02/09/2023/FR
+| 1.0.2    | Removal of the no longer needed OBIS code table, which was needed for the deleted binary format. Add best practice examples to enable consistent implementation and transfer of OCMF records via OCPP.                                                                                                                                                                                                                             																																																																																																																																												            | 02/15/2020/FR
+| 1.0.1    | Definition of the meaning of the version numbers. More detailed definition on the structure of the format. Delete binary format and transmission format (transformation is not possible without recalculation of the signature).                                                                                                                                                                                                                             																																																																																																																																									| 02/15/2020/FR
+| 1.0      | Final status for integration in transparency software. Feedback from SAFE AG engineering incorporated: Signature algorithm not in data-to-be-signed space after all, so that theoretically multiple different signatures can be appended independently. Reading type optional. Additional state on time status: relative time accounting based on info clock. OBIS codes expanded to applicable options according to comments from Mr. Weber.  | 21.02.2019/AM 																																																																																																																																								| 02/21/2009/AM
+| 0.5      | Further feedback from DKE/GAK 461.0.21 AP5 from January 2019 incorporated: Clarifications on pagination, reference of serial numbers, charge point and public key. Optional user data section for charging point assignment. Error index replaced by erroneous quantities; error during charge as reason for reading. Feedback from Mr. Weber on version 0.3 incorporated: Spiking, current types. Byte offset in binary descriptions removed, because they contradicted with StrEnum types. Feedback from Mr. Staubermann on elliptic curve cryptography: synonymous names of curves, correction of block lengths for public key types.                                                                                                                                                                                                                                                                                                                                                                                       | 02/11/2019/AM 
+| 0.4      | Results and clarifications after feedback from conference calls with DKE/GAK 461.0.21 AP5: Document and format versions corrected; binary format clarified: Network byte order; pagination count clarified, pagination defined; signature device identification (gateway) placed above meter identification, integrated into general details, vendor renamed to gateway, serial number mandatory for either gateway or meter; user mapping: status split into general yes/no and mapping level, level split into groups; all status details other than yes/no are now optional. Usage of event counter clarified, pagination defined; note on accuracy for measured value; signature algorithm moved to signed area; signature algorithms extended by future candidates, key types analog; defaults provided with OCMF version. Authorization features extended according to OCPP 2.0; extension points for OCMF defined in user data and signature sections. 																	| 01/11/2019/AM 
+| 0.3      | State of the meter added for incorrectly read values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | 12/11/2018/DM 
+| 0.2      | Binary format adapted according to the changes with 0.1, description of the signature algorithm concretized, StrEnum type introduced as flexible extension point into the binary format.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | 08/16/2018/AM 
+| 0.1      | This document is based on ABL data format version 1.14 and replaces it. Initial version after discussion of ABL data format (v1.13) with KEBA and has.to.be: decoupling of the binary transmission format from the custody transfer relevant part, JSON as primary transmission format. Header and overall structure defined. Fields aligned with draft "Requirements for the data structure for metering tuples in electromobility" of 26.04.2018. JSON format structurally simplified, keys shortened. Possibility of multiple readings in one data set created. Firmware version of the meter optionally added. Errors as abort reasons for charging processes. Hash type for signature defined.                                                                                                                                                                                                                                                                                                                            | 08/09/2018/AM 
 
 
 
@@ -181,7 +169,6 @@ The format consists of several sections:
 1. **Header** to uniquely identify the format.
 2. section containing the actual **payload data**.
 3. **Signature** over the payload data
-4. optional: public key
 
 The contents of the record serve as the input format into the [Link](https://transparenz.software/ transparency software). The [Link](https://transparenz.software/ transparency software) is available online for anyone to use to validate the dataset.
 
@@ -247,7 +234,7 @@ The transaction context (T) must be supported in any case. The fiscal context (F
 
 
 | Key | Type |Cardi-nality| Description |
-|------|--------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------|--------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | PG | String |1..1 | Pagination of the entire data set, i.e. the data that are combined in one signature. Format: `<indicator><number>` <br> The string is composed of an identifying letter for the context and a number without leading zeros. There is a separate independent pagination counter for each context. The following indicators are defined: <br>  T: Transaction – Readings in transaction reference (mandatory) <br> F: Fiscal – Readings independent of transactions (optional) <br> The respective pagination counter is incremented after each use for a record.|
 <small>Table 2: Pagination field</small>
 
@@ -255,12 +242,12 @@ The transaction context (T) must be supported in any case. The fiscal context (F
 
 The meter identification is optional if the signature generating component has already been identified in the general data.
 
-| Key | Typ   |Cardi-nality| Description                                                              |
-|------|--------|-----|----------------------------------------------------------------------------|
-| MV   | String |0..1 | Meter-Vendor: Manufacturer identification of the meter, name of the manufacturer. |
-| MM   | String |0..1 | Meter-Model: Model identification of the meter.                              |
-| MS   | String |1..1 | Meter-Serial: Serial number of the meter .                              |
-| MF   | String |0..1 | Meter-Firmware: Firmware-Version of the meter.                              |
+| Key  | Typ    |Cardinality| Description                                                              			|
+|------|--------|-----------|-----------------------------------------------------------------------------------|
+| MV   | String |0..1      	| Meter-Vendor: Manufacturer identification of the meter, name of the manufacturer. |
+| MM   | String |0..1 		| Meter-Model: Model identification of the meter.                              		|
+| MS   | String |1..1 		| Meter-Serial: Serial number of the meter .                              			|
+| MF   | String |0..1 		| Meter-Firmware: Firmware-Version of the meter.                              		|
 
 <small>Table 3: Fields for identification of the meter</small>
 
@@ -269,24 +256,24 @@ The meter identification is optional if the signature generating component has a
 Fields belonging to this are included exactly when there is a transaction reference. Even if no user can be transaction reference no user can be assigned yet, the section is included. If there is no transaction reference exists, this group of fields is missing.
 
 
-| Key | Typ             |Cardi-nality| Description                                                                                                                                                                                                                                                                                             |
-|------|------------------|-----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| IS   | Boolean          |1..1 | Identification status: General status for user assignment:<br>true: user successfully assigned, <br>false: User not assigned.                                                                                                                                                                   |
-| IL   | String           |0..1 | Identification-Level: Encoded overall status of the user assignment, represented by an identifier from Table 10.                                                                                                                                                                             |
-| IF   | Array of  String |0..4 | Identification flags: Detailed statements about the user assignment, represented by one or more identifiers from Table 12 to Table 15. The identifiers are always noted as string elements in an array. Also one or no element must be noted as an array.                                |
-| IT   | String           |1..1 | Identification-Type: Type of identification data, identifier see table 16.                                                                                                                                                                                                                             |
-| ID   | String           |0..1 | Identification-Data: The actual identification data according to the type from table 16, e.g. a hex-coded UID according to ISO 14443.                                                                                                                                                    |
-| TT    | String (0..250)          |0..1 | TariffText: Text used to identify a unique tariff. This field is intended for the tariff designation in "Direct Payment" use case.                                                                                                                                                    |
+| Key | Typ                |Cardinality | Description                                                                                                                                                                                                                                                  |
+|------|------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| IS   | Boolean          |1..1 		| Identification status: General status for user assignment:<br>true: user successfully assigned, <br>false: User not assigned.                                                                                                                                |
+| IL   | String           |0..1 		| Identification-Level: Encoded overall status of the user assignment, represented by an identifier from Table 10.                                                                                                                                             |
+| IF   | Array of  String |0..4 		| Identification flags: Detailed statements about the user assignment, represented by one or more identifiers from Table 12 to Table 15. The identifiers are always noted as string elements in an array. Also one or no element must be noted as an array.    |
+| IT   | String           |1..1 		| Identification-Type: Type of identification data, identifier see table 16.                                                                                                                                                                                   |
+| ID   | String           |0..1 		| Identification-Data: The actual identification data according to the type from table 16, e.g. a hex-coded UID according to ISO 14443.                                                                                                                        |
+| TT   | String (0..250)  |0..1 		| TariffText: Text used to identify a unique tariff. This field is intended for the tariff designation in "Direct Payment" use case.                                                                                                                           |
 <small>Table 4: Fields for user assignment</small>
 
 ##### Assignment of the charge point
 
 This optional user data section provides a way to identify the charging point. This can be an alternative to identification by serial numbers or can be used additionally.
 
-| Key | Typ   |Cardi-nality| Description                                                                                                    |
-|------|--------|-----|------------------------------------------------------------------------------------------------------------------|
+| Key | Typ   |Cardi-nality| Description                                                                                                                |
+|------|--------|-----|---------------------------------------------------------------------------------------------------------------------------------|
 | CT   | String |0..1 | Charge-Point-Identification-Type: Type of the specification for the identification of the charge point, identifier see table 17 |
-| CI   | String |0..1 | Charge-Point-Identification: Identification information for the charge point.                                           |
+| CI   | String |0..1 | Charge-Point-Identification: Identification information for the charge point.                                                   |
 <small>Table 5: Fields for identification of the charge point</small>
 
 ##### Readings
@@ -298,16 +285,16 @@ The fields `RV`, `RI` , `RU` and `RT` can be omitted if only the occurrence of a
 The fields `RI` and `RU`, form a group. Fields of a group are either all present together or omitted together. 
 A power failure during time-based billing represents an error event.
 
-| Key | Typ  |Cardi-nality| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|------|--------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TM   | String |1..1| Time: Specification to the system time of the reading and synchronization state. <br> The time is described according to ISO 8601 with a resolution of milliseconds. Accordingly, the format is formed according to the following scheme: <br> `<Year>-<Month>-<Day>T<Hour>:<Minute>:<Second>,<Millisecond><Time zone>` <br> The year is displayed with four digits. Month, day, hour, minute and second is displayed with two digits. Millisecond is displayed with three digits. The indication of the time zone consists of a sign and a four-digit indication for hour and minute. Example: <br> `2018-07-24T13:22:04,000+0200` <br> The synchronization state consists of a capital letter as identifier. This is added to the time, separated by a space. Available states see table 18.                                                             |
+| Key | Typ  |Cardi-nality| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|------|--------|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TM   | String |1..1| Time: Specification to the system time of the reading and synchronization state. <br> The time is described according to ISO 8601 with a resolution of milliseconds. Accordingly, the format is formed according to the following scheme: <br> `<Year>-<Month>-<Day>T<Hour>:<Minute>:<Second>,<Millisecond><Time zone>` <br> The year is displayed with four digits. Month, day, hour, minute and second is displayed with two digits. Millisecond is displayed with three digits. The indication of the time zone consists of a sign and a four-digit indication for hour and minute. Example: <br> `2018-07-24T13:22:04,000+0200` <br> The synchronization state consists of a capital letter as identifier. This is added to the time, separated by a space. Available states see table 18.                                                |
 | TX   | String |0..1| Transaction: Meter reading reason, reference of meter reading to transaction, noted as capital letter: <br> B – Begin of transaction <br> C – Charging = during charging (can be used optionally) <br> _ X – Exception = Error during charging, transaction continues, time and/or energy are no longer usable from this reading (incl.). <br> E – End of transaction, alternatively more precise codes: <br> _ L – Loading process was terminated locally <br> _ R – Loading process was terminated remotely <br> _ A – (Abort) Loading process was aborted by error <br> _ P – (Power) Charging process was terminated by power failure <br> S – Suspended = Transaction active, but currently no charge (can be used optionally) <br> T – Tariff change <br> This field is missing if there is no transaction reference. (Fiscal Metering) |
-| RV   | Number |1..1| Reading-Value: The value of the reading <br>Here the JSON data format Number is used, this allows among other things an exact marking of the valid decimal places. However, the representation must not be transformed by further handling methods (e.g. processing by JSON parser) (rewriting the number with a different exponent, truncation of decimal places, etc.) since this would change the representation of the physical quantity and thus potentially the number of valid digits. According to the application rule, it is recommended to represent the measured value with two decimal places of accuracy, if it is kWh.                                                                                                                                                                                               |
-| RI   | String |0..1| Reading-Identification: Identifier, which quantity was read, according to OBIS code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| RU   | String |1..1| Reading-Unit: Unit of reading, e.g. kWh, according to Table 19: Predefined units.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| RT   | String |0..1| Reading-Current-Type: The type of current measured by the meter, e.g. alternating current or direct current, according to Table 20: Predefined current types. <br> This field is optional. No default value is defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| EF   | String |0..1| Error-Flags: Statement which quantities are no longer usable for billing due to an error. Each character in this string identifies a quantity. The following characters are defined: <br>  E – Energy<br>  t – Time|
-| ST   | String |1..1| Status: state of the meter at the time of reading. Noted as abbreviation according to Table 9.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| RV   | Number |1..1| Reading-Value: The value of the reading <br>Here the JSON data format Number is used, this allows among other things an exact marking of the valid decimal places. However, the representation must not be transformed by further handling methods (e.g. processing by JSON parser) (rewriting the number with a different exponent, truncation of decimal places, etc.) since this would change the representation of the physical quantity and thus potentially the number of valid digits. According to the application rule, it is recommended to represent the measured value with two decimal places of accuracy, if it is kWh.                                                                                                                                                                                                         |
+| RI   | String |0..1| Reading-Identification: Identifier, which quantity was read, according to OBIS code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| RU   | String |1..1| Reading-Unit: Unit of reading, e.g. kWh, according to Table 19: Predefined units.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| RT   | String |0..1| Reading-Current-Type: The type of current measured by the meter, e.g. alternating current or direct current, according to Table 20: Predefined current types. <br> This field is optional. No default value is defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| EF   | String |0..1| Error-Flags: Statement which quantities are no longer usable for billing due to an error. Each character in this string identifies a quantity. The following characters are defined: <br>  E – Energy<br>  t – Time|                            																																																																																																																																																 |
+| ST   | String |1..1| Status: state of the meter at the time of reading. Noted as abbreviation according to Table 9.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 <small>Table 6: Fields of a meter reading object</small>
 
 ##### Extension points in payload data section
@@ -333,10 +320,10 @@ The signature section also consists of a standalone JSON object. It contains sev
 
 | Key: | Typ:   |Card| Description:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 |------|--------|----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| SA   | String |1..1| Signature-Algorithm: Selects the algorithm used to create the signature. This includes the signature algorithm, its parameters, and the hash algorithm that will be applied to the data to be signed. This specification is optional. If it is omitted, the default value is valid. Table 21 shows which values are possible.                                       |
-| SE   | String |0..1| Signature-Encoding: Indicates how the signature data is encoded to be stored in the JSON string. This specification is optional. If it is omitted, the default value is valid. The following values are possible: <br>hex – The signature data is represented in the JSON string in hexadecimal encoding (default) <br>base64 – The signature data is stored according to base64
-| SM   | String |0..1| Signature-Mime-Type: Indicates how the signature data is to be interpreted. This specification is optional. If it is omitted, the default value is valid. The following values are possible:<br>application/x-der – Filing as ASN.1-coded .der-file (Default)                                                                                                                       |
-| SD   | String |1..1| Signature-Data: The actual signature data according to the above format specifications.                                                                                                                                                                                                                                                                                                    |
+| SA   | String |1..1| Signature-Algorithm: Selects the algorithm used to create the signature. This includes the signature algorithm, its parameters, and the hash algorithm that will be applied to the data to be signed. This specification is optional. If it is omitted, the default value is valid. Table 21 shows which values are possible.                                                        |
+| SE   | String |0..1| Signature-Encoding: Indicates how the signature data is encoded to be stored in the JSON string. This specification is optional. If it is omitted, the default value is valid. The following values are possible: <br>hex – The signature data is represented in the JSON string in hexadecimal encoding (default) <br>base64 – The signature data is stored according to base64     |
+| SM   | String |0..1| Signature-Mime-Type: Indicates how the signature data is to be interpreted. This specification is optional. If it is omitted, the default value is valid. The following values are possible:<br>application/x-der – Filing as ASN.1-coded .der-file (Default)                                                                                                                        |
+| SD   | String |1..1| Signature-Data: The actual signature data according to the above format specifications.                                                                                                                                                                                                                                                                                              |
 <small>Table 7: Signature data fields of the signature section</small>
 
 ##### Extension points
@@ -400,6 +387,7 @@ Examples of the resulting JSON-based formats:
         ],
         "IT": "ISO14443",
         "ID": "1F2D3A4F5506C7",
+		"TT": "Tarif 1",
         "RD": [
             {
                 "TM": "2018-07-24T13:22:04,000+0200 S",
@@ -427,7 +415,7 @@ Examples of the resulting JSON-based formats:
 
 The following table represents the predefined values for the meter manufacturer and model fields.
 
-| Manufacturer:     | Modell:                 |
+| Manufacturer:   | Modell:                 |
 |-----------------|-------------------------|
 | Phoenix Contact | EEM-350-D-MCB           |
 | Inepro Metering | Pro 1 Mod Pro 380 Mod   |
@@ -442,19 +430,19 @@ The following table represents the predefined values for the meter manufacturer 
 This field can take one value at the same time.
 
 | Token | Identifier | Description                                                                          |
-|---------|--------------|----------------------------------------------------------------------------------------|
-| N       | NOT_PRESENT  | The counter is not present or has not been found                                         |
-| G       | OK           | Counter in order (Good)                                                               |
-| T       | TIMEOUT      | Timeout when trying to control the counter                                |
-| D       | DISCONNECTED | Counter was disconnected from the signature component                                       |
-| R       | NOT_FOUND    | Counter no longer found (has already been found at least once before) (Removed) |
-| M       | MANIPULATED  | Manipulation detected                                                                   |
-| X       | EXCHANGED    | Meter exchanged (serial number no longer matches the last known one)   |
+|---------|--------------|----------------------------------------------------------------------------------|
+| N       | NOT_PRESENT  | The counter is not present or has not been found                                 |
+| G       | OK           | Counter in order (Good)                                                          |
+| T       | TIMEOUT      | Timeout when trying to control the counter                              			|
+| D       | DISCONNECTED | Counter was disconnected from the signature component                            |
+| R       | NOT_FOUND    | Counter no longer found (has already been found at least once before) (Removed)  |
+| M       | MANIPULATED  | Manipulation detected                                                            |
+| X       | EXCHANGED    | Meter exchanged (serial number no longer matches the last known one)             |
 | I       | INCOMPATIBLE | Meter version or its API not compatible with signature component                 |
-| O       | OUT_OF_RANGE | Read value outside the value range                                             |
-| S       | SUBSTITUTE   | A substitute value was formed                                                       |
-| E       | OTHER_ERROR  | Other, not further known error                                                  |
-| F       | READ_ERROR   | Meter register not read correctly; value of the readout is not valid           |
+| O       | OUT_OF_RANGE | Read value outside the value range                                               |
+| S       | SUBSTITUTE   | A substitute value was formed                                                    |
+| E       | OTHER_ERROR  | Other, not further known error                                                   |
+| F       | READ_ERROR   | Meter register not read correctly; value of the readout is not valid             |
 <small>Table 9: State / error of the counter</small>
 
 ### User assignment
@@ -464,19 +452,19 @@ This field can take one value at the same time.
 This field can take only one value at a time. For clarity, the values are divided into several
 groups, which are not distinguished in the format.
 
-| Group: | Status/Error: | Description: |
-|-----------------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| not available | - | The field is not specified.                                                                                                              |
-| Status without assignment | NONE | There is no user assignment. The other data for user assignment have no significance.                                       |
-| Status with assignment | HEARSAY | The assignment is unsecured; e.g., by reading an RFID UID.                                                                    |  
-| | TRUSTED | The mapping can be trusted to some extent, but there is no absolute reliability. Example: Authorization by backend. |
-| | VERIFIED | The assignment has been verified by the signature component and special measures.                                                      |
-| | CERTIFIED | The assignment was verified by the signature component using a cryptographic signature that certifies the assignment.    |
-|  |SECURE | The mapping was established by a secure feature (e.g. secure RFID card, ISO15118 with plug and charge, etc.). |
-| Error | MISMATCH | Error; UIDs do not match.                                                                                                      |
-| | INVALID | Error; certificate not correct (check negative).                                                                                        |
-| | OUTDATED | Error; referenced trust certificate expired.                                                                                        |
-| | UNKNOWN | Certificate could not be successfully verified (no matching trust certificate found).                                             |
+| Group:                    | Status/Error:  | Description: 																															  |
+|---------------------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| not available             | -              | The field is not specified.                                                                                                                |
+| Status without assignment | NONE 			 | There is no user assignment. The other data for user assignment have no significance.                                                      |
+| Status with assignment    | HEARSAY 		 | The assignment is unsecured; e.g., by reading an RFID UID.                                                                                 |
+| 							| TRUSTED 		 | The mapping can be trusted to some extent, but there is no absolute reliability. Example: Authorization by backend.                        |
+| 							| VERIFIED 		 | The assignment has been verified by the signature component and special measures.                                                          |
+| 							| CERTIFIED 	 | The assignment was verified by the signature component using a cryptographic signature that certifies the assignment.                      |
+|  							| SECURE 		 | The mapping was established by a secure feature (e.g. secure RFID card, ISO15118 with plug and charge, etc.).                              |
+| Error 					| MISMATCH 		 | Error; UIDs do not match.                                                                                                                  |
+| 							| INVALID 		 | Error; certificate not correct (check negative).                                                                                           |
+| 							| OUTDATED 		 | Error; referenced trust certificate expired.                                                                                               |
+| 							| UNKNOWN 		 | Certificate could not be successfully verified (no matching trust certificate found).                                                      |
 <small>Table 10: Status and error states of user assignment</small>
 
 ### Details
@@ -488,48 +476,48 @@ valid values.
 #### Allocation Details User Assignment
 
 | Content                                                    |For details see |
-|------------------------------------------------------------|--------------|
-| [Allocation share RFID](#rfid)                             | Table 12   |
-| [Allocation share OCPP](#ocpp)                             | Table 13   |
-| [Allocation share ISO 15118](#iso15118)                    | Table 14   |
-| [Allocation share PLMN](#plmn)                             | Table 15   |
+|------------------------------------------------------------|----------------|
+| [Allocation share RFID](#rfid)                             | Table 12       |
+| [Allocation share OCPP](#ocpp)                             | Table 13       |
+| [Allocation share ISO 15118](#iso15118)                    | Table 14       |
+| [Allocation share PLMN](#plmn)                             | Table 15       |
 <small>Table 11: Overview of Allocation Details User Assignment</small>
 
 #### [Allocation share RFID](#rfid)
 
-| Identifier  | Description                                                                                                       |
-|--------------|---------------------------------------------------------------------------------------------------------------------|
+| Identifier   | Description                                                                                                       |
+|--------------|-------------------------------------------------------------------------------------------------------------------|
 | RFID_NONE    | No assignment via RFID                                                                                            |
-| RFID_PLAIN   | Assignment via external RFID card reader                                                                            |
+| RFID_PLAIN   | Assignment via external RFID card reader                                                                          |
 | RFID_RELATED | Assignment via protected RFID card reader                                                                         |
-| RFID_PSK     | A previously known shared key (pre-shared key) was used, e.g. with a secured RFID card. |
+| RFID_PSK     | A previously known shared key (pre-shared key) was used, e.g. with a secured RFID card. 						   |
 <small>Table 12: Allocation share RFID </small>
 
 #### [Allocation share OCPP](#ocpp)
 
-| Identifier:    | Description:                                                                                      |
-|----------------|----------------------------------------------------------------------------------------------------|
+| Identifier:    | Description:                                                                                 |
+|----------------|----------------------------------------------------------------------------------------------|
 | OCPP_NONE      | No user assignment by OCPP                                                                   |
-| OCPP_RS        | Assignment by OCPP RemoteStart method                                                           |
-| OCPP_AUTH      | Assignment by OCPP Authorize method                                                             |
-| OCPP_RS_TLS    | Transport layer security was used to transfer the mapping by OCPP-RemoteStart method. |
-| OCPP_AUTH_TLS  | Transport layer security was used to transfer the mapping by OCPP authorize method.   |
-| OCPP_CACHE     | Assignment by authorization cache of OCPP                                                       |
-| OCPP_WHITELIST | Assignment by white list from OCPP                                                                |
-| OCPP_CERTIFIED | A certificate of the backend which certifies the user mapping was used.             |
+| OCPP_RS        | Assignment by OCPP RemoteStart method                                                        |
+| OCPP_AUTH      | Assignment by OCPP Authorize method                                                          |
+| OCPP_RS_TLS    | Transport layer security was used to transfer the mapping by OCPP-RemoteStart method.		|
+| OCPP_AUTH_TLS  | Transport layer security was used to transfer the mapping by OCPP authorize method.   		|
+| OCPP_CACHE     | Assignment by authorization cache of OCPP                                                    |
+| OCPP_WHITELIST | Assignment by white list from OCPP                                                           |
+| OCPP_CERTIFIED | A certificate of the backend which certifies the user mapping was used.             			|
 <small>Table 13: Allocation share OCPP</small>
 
 #### [Allocation share ISO 15118](#iso15118)
 
-| Identifier   | Description                       |
-|---------------|--------------------------------------|
-| ISO15118_NONE | no user assignment by ISO 15118 |
-| ISO15118_PNC  | Plug & Charge was used         |
+| Identifier    | Description                       |
+|---------------|-----------------------------------|
+| ISO15118_NONE | no user assignment by ISO 15118   |
+| ISO15118_PNC  | Plug & Charge was used            |
 <small>Table 14: Allocation share ISO 15118</small>
 
 #### [Allocation share PLMN](#plmn)
 
-| Identifier | Description   |
+| Identifier | Description      |
 |-------------|-----------------|
 | PLMN_NONE   | no assignment   |
 | PLMN_RING   | call            |
@@ -543,58 +531,58 @@ unsigned integer in the Type field. These mappings are based on the specificatio
 OCPP. OCPP currently (version 1.5) only provides 20 characters for the identification feature.
 In accordance with the maximum length of an IBAN (34 characters) allocations of up to 40 bytes have been provided for the data area.
 
-|Token | Identifier | Description |
-|---------|--------------|------------------------------------------------------------------------------------------------------------------------------------|
-| 0 | NONE | No assignment available |
-| 1 | DENIED | Assignment currently not available (due to two-factor authorization) |
-| 2 | UNDEFINED | Type not specified |
-| 10 | ISO14443 | UID of an RFID card according to ISO 14443. Represented as 4 or 7 bytes in hexadecimal notation.                         |
-| 11 | ISO15693 | UID of an RFID card according to ISO 15693. Represented as 8 bytes in hexadecimal notation.                                |
-| 20 | EMAID | Electro-Mobility-Account-ID according to ISO/IEC 15118 (string with length 14 or 15) |
-| 21 | EVCCID | Electric vehicle account ID according to ISO/IEC 15118 (maximum length 6 characters) |
-| 30 | EVCOID | EV Contract ID according to DIN 91286. |
-| 40 | ISO7812 | Identification card format according to ISO/IEC 7812 (credit and bank cards, etc.) |
-| 50 | CARD_TXN_NR | Card transaction number (CardTxNbr) for a payment with credit or bank card used in a terminal at the charging point. |
-| 60 | CENTRAL | Centrally generated ID. No exact format defined, can be e.g. a UUID. (OCPP 2.0) |
-| 61 | CENTRAL_1 | Centrally generated ID, e.g. by start via SMS. No exact format defined. (until OCPP 1.6) |
-| 62 | CENTRAL_2 | Centrally generated ID, e.g. by operator start. No exact format defined. (until OCPP 1.6) |
-| 70 | LOCAL | Locally generated ID. No exact format defined, may be e.g. a UUID. (OCPP 2.0) |
-| 71 | LOCAL_1 | Locally generated ID, e.g. ID generated internally by the charge point. No exact format defined. (until OCPP 1.6) |
-| 72 | LOCAL_2 | Locally generated ID, for other cases. No exact format defined. (until OCPP 1.6) |
-| 80 | PHONE_NUMBER | International phone number with leading "+".                                                                                    |
-| 90 | KEY_CODE | User-related private key code. No exact format defined.                                                                  |
+|Token    | Identifier   | Description 																								   			|
+|---------|--------------|----------------------------------------------------------------------------------------------------------------------|
+| 0 	  | NONE 		 | No assignment available                                                                                              |
+| 1		  | DENIED 		 | Assignment currently not available (due to two-factor authorization)                                                 |
+| 2 	  | UNDEFINED    | Type not specified                                                                                                   |
+| 10 	  | ISO14443 	 | UID of an RFID card according to ISO 14443. Represented as 4 or 7 bytes in hexadecimal notation.                     |
+| 11	  | ISO15693 	 | UID of an RFID card according to ISO 15693. Represented as 8 bytes in hexadecimal notation.                          |
+| 20 	  | EMAID 		 | Electro-Mobility-Account-ID according to ISO/IEC 15118 (string with length 14 or 15)                                 |
+| 21      | EVCCID 		 | Electric vehicle account ID according to ISO/IEC 15118 (maximum length 6 characters)                                 |
+| 30      | EVCOID 		 | EV Contract ID according to DIN 91286.                                                                               |
+| 40      | ISO7812 	 | Identification card format according to ISO/IEC 7812 (credit and bank cards, etc.)                                   |
+| 50      | CARD_TXN_NR  | Card transaction number (CardTxNbr) for a payment with credit or bank card used in a terminal at the charging point. |
+| 60      | CENTRAL 	 | Centrally generated ID. No exact format defined, can be e.g. a UUID. (OCPP 2.0)                                      |
+| 61 	  | CENTRAL_1 	 | Centrally generated ID, e.g. by start via SMS. No exact format defined. (until OCPP 1.6)                             |
+| 62 	  | CENTRAL_2 	 | Centrally generated ID, e.g. by operator start. No exact format defined. (until OCPP 1.6)                            |
+| 70 	  | LOCAL 		 | Locally generated ID. No exact format defined, may be e.g. a UUID. (OCPP 2.0)                                        |
+| 71      | LOCAL_1 	 | Locally generated ID, e.g. ID generated internally by the charge point. No exact format defined. (until OCPP 1.6)    |
+| 72 	  | LOCAL_2 	 | Locally generated ID, for other cases. No exact format defined. (until OCPP 1.6)                                     |
+| 80 	  | PHONE_NUMBER | International phone number with leading "+".                                                                         |
+| 90 	  | KEY_CODE 	 | User-related private key code. No exact format defined.                                                              |
 <small>Table 16: User assignment types</small>
 
 ### Charging point assignment
 
-| Identifier | Description                                                                                              |
+| Identifier | Description                                                                                                 |
 |-------------|------------------------------------------------------------------------------------------------------------|
 | EVSEID      | EVSE-ID                                                                                                    |
-| CBIDC       | Charge box ID and connector ID according to OCPP, a space is used as field separator, e.g. „STEVE_01 1“. |
+| CBIDC       | Charge box ID and connector ID according to OCPP, a space is used as field separator, e.g. „STEVE_01 1“.   |
 <small>Table 17: Charging point assignment types</small>
 
 ### Time status
 
-| Identifier | Description                                                                                                                                                                                                                                                                                |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| U           | unknown, unsynchronized                                                                                                                                                                                                                                                                    |
-| I           | informative (info clock)                                                                                                                                                                                                                                                                               |
-| S           | synchronized 
+| Identifier  | Description                                                                                                                                                                                                                                                                                               |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| U           | unknown, unsynchronized                                                                                                                                                                                                                                                                                   |
+| I           | informative (info clock)                                                                                                                                                                                                                                                                                  |
+| S           | synchronized                                                                                                                                                                                                                                                                                              |
 | R           | relative time accounting with a custody transfer accurate timer based on an info clock. I.e., at the beginning of the charging process, a time with informative quality was available. During the charging process, the time (duration) was recorded in accordance with the legal metrology requirements. |
 <small>Table 18: Time status</small>
 
 
 ### Units
 
-| Unit |
+| Unit     |
 |----------|
 | kWh      |
 | Wh       |
 <small>Table 19: Predefined units</small>
 
 ### Current types
-| Identifier | Description       |
-|-------------|---------------------|
+| Identifier  | Description            |
+|-------------|------------------------|
 | AC          | AC current measurement |
 | DC          | DC current measurement |
 <small>Table 20: Predefined current types</small>
@@ -602,28 +590,28 @@ In accordance with the maximum length of an IBAN (34 characters) allocations of 
 ### Cryptography
 
 #### Signature methods
-| Identifier | Signature algorithm | Curve name and synonyms, if any                             | Key length | Hash algorithm | Block length |
+| Identifier 											| Signature algorithm 	  | Curve name and synonyms, if any                              | Key length         | Hash algorithm      | Block length  |
 |-------------------------------------------------------|-------------------------|--------------------------------------------------------------|--------------------|---------------------|---------------|
-| ECDSA-secp192k1-SHA256 | ECDSA | secp192k1 | 192 bit | SHA-256 | 48 |
-| ECDSA-secp256k1-SHA256 | ECDSA | secp256k1 | 256 bit | SHA-256 | 64 |
-| ECDSA-secp192r1-SHA256 | ECDSA | secp192r1 | 192 bit | SHA-256 | 48 |
-| ECDSA-secp256r1-SHA256 (default in OCMF version 0.4) | ECDSA | secp256r1, NIST P-256, ANSI X9.62 elliptic curve prime256v1 | 256 bit | SHA-256 | 64 |
-| ECDSA-brainpool256r1-SHA256 | ECDSA | brainpool256r1 | 256 bit | SHA-256 | 64 |
-| ECDSA-secp384r1-SHA256 | ECDSA | secp384r1, NIST P-384, ANSI X9.62 elliptic curve prime384v1 | 384 bit | SHA-256 | 96 |
-| ECDSA-brainpool384r1- SHA256 | ECDSA | brainpool384r1 | 384 bit | SHA-256 | 96 |
+| ECDSA-secp192k1-SHA256                                | ECDSA                   | secp192k1                                                    | 192 bit            | SHA-256             | 48            |
+| ECDSA-secp256k1-SHA256                                | ECDSA                   | secp256k1                                                    | 256 bit            | SHA-256             | 64            |
+| ECDSA-secp192r1-SHA256                                | ECDSA                   | secp192r1                                                    | 192 bit            | SHA-256             | 48            |
+| ECDSA-secp256r1-SHA256  (Default in OCMF Version 0.4) | ECDSA                   | secp256r1,  NIST P-256, ANSI X9.62 elliptic curve prime256v1 | 256 bit            | SHA-256             | 64            |
+| ECDSA-brainpool256r1-SHA256                           | ECDSA                   | brainpool256r1                                               | 256 bit            | SHA-256             | 64            |
+| ECDSA-secp384r1-SHA256                                | ECDSA                   | secp384r1,  NIST P-384, ANSI X9.62 elliptic curve prime384v1 | 384 bit            | SHA-256             | 96            |
+| ECDSA-brainpool384r1-  SHA256                         | ECDSA                   | brainpool384r1                                               | 384 bit            | SHA-256             | 96            |
 <small>Table 21: Predefined signature algorithms and their parameters</small>
 
 #### Public-Key-Types
 
-|Value | Identifier | Signature Algorithm | Curve         | Key length  | Block length |
+|Value  | Identifier 									 | Signature Algorithm 	   | Curve          | Key length           | Block length  |
 |-------|------------------------------------------------|-------------------------|----------------|----------------------|---------------|
-| 1 | ECDSA-secp192k1 | ECDSA | secp192k1 | 192 bit | 48 |
-| 2 | ECDSA-secp256k1 | ECDSA | secp256k1 | 256 bit | 64 |
-| 3 | ECDSA-secp192r1 | ECDSA | secp192r1 | 192 bit | 48 |
-| 4 | ECDSA-secp256r1 (default in OCMF version 0.4) | ECDSA | secp256r1 | 256 bit | 64 |
-| 5 | ECDSA-brainpool256r1 | ECDSA | brainpool256r1 | 256 bit | 64 |
-| 6 | ECDSA-secp384r1 | ECDSA | secp384r1 | 384 bit | 96 |
-| 7 | ECDSA-brainpool384r1 | ECDSA | brainpool384r1 | 384 bit | 96 |
+| 1     | ECDSA-secp192k1                                | ECDSA                   | secp192k1      | 192 bit              | 48            |
+| 2     | ECDSA-secp256k1                                | ECDSA                   | secp256k1      | 256 bit              | 64            |
+| 3     | ECDSA-secp192r1                                | ECDSA                   | secp192r1      | 192 bit              | 48            |
+| 4     | ECDSA-secp256r1  (Default in OCMF Version 0.4) | ECDSA                   | secp256r1      | 256 bit              | 64            |
+| 5     | ECDSA-brainpool256r1                           | ECDSA                   | brainpool256r1 | 256 bit              | 64            |
+| 6     | ECDSA-secp384r1                                | ECDSA                   | secp384r1      | 384 bit              | 96            |
+| 7     | ECDSA-brainpool384r1                           | ECDSA                   | brainpool384r1 | 384 bit              | 96            |
 <small>Table 22: Predefined key types</small>
 Note: The term "Key length" refers to the key length of the corresponding private key
 
