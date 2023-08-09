@@ -1,8 +1,6 @@
 
 # Open Charge Metering Format
 
-**ENTWURF**
-
 Revision: 1.0
 
 
@@ -621,7 +619,7 @@ Zuordnungen bis zu 40 Byte Länge vorgesehen.
 
 #### Public-Key-Typen
 
-| Wert: | Bezeichner:                                    | Signatur-  Algorithmus: | Kurve:         | Schlüssel- 1 länge : | Block- Länge: |
+| Wert: | Bezeichner:                                    | Signatur-  Algorithmus: | Kurve:         | Schlüssel-  länge :  | Block- Länge: |
 |-------|------------------------------------------------|-------------------------|----------------|----------------------|---------------|
 | 1     | ECDSA-secp192k1                                | ECDSA                   | secp192k1      | 192 bit              | 48            |
 | 2     | ECDSA-secp256k1                                | ECDSA                   | secp256k1      | 256 bit              | 64            |
