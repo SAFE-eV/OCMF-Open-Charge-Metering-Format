@@ -1,6 +1,6 @@
 # Open Charge Metering Format
 
-Revision: 1.0
+Revision: 1.2
 
 
 ## Contributors
@@ -13,6 +13,7 @@ Revision: 1.0
 | Contributors  | Andreas Weber                              | [Allego](https://www.allego.eu/)          |
 | Contributors  | Michael Staubermann                        | [Webolution](https://www.webolution.de/)  |
 | Contributors  | Michael Heimpold                           | [chargebyte](https://www.chargebyte.com/) |
+| Contributors  | Mathieu Lémont                             | [LEM](https://www.lem.com/)               |
 
 
 ## Revision Overview
@@ -21,6 +22,7 @@ Changes from the previous version are marked with change tracking.
 
 | Revision | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Date          |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| 1.2.0    | Cable loss compensation data, definition of new parameters used for compensating Energy loss due to EVSE's charging Cable Resistance                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | 2023-05-24/AM |
 | 1.1.0    | Ad-hoc charging, added tariff information.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 2023-02-09/FR |
 | 1.0.2    | Removal of the no longer needed OBIS code table, which was needed for the deleted binary format. Added best practice examples to enable consistent implementation and transfer of OCMF records via OCPP.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 2020-02-15/FR |
 | 1.0.1    | Definition of the meaning of the version numbers. More detailed definition on the structure of the format. Delete binary format and transmission format (transformation is not possible without recalculation of the signature).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 2020-02-15/FR |
@@ -305,12 +307,21 @@ If no transaction reference exists, this group of fields is missing.
 | Key | Type             | Cardinality | Description                                                                                                                                                                                                                                               |
 |-----|------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | IS  | Boolean          | 1..1        | Identification Status: General status for user assignment: <br> true: user successfully assigned <br> false: user not assigned                                                                                                                            |
-| IL  | String           | 0..1        | Identification Level: Encoded overall status of the user assignment, represented by an identifier from table 10.                                                                                                                                          |
-| IF  | Array of Strings | 0..4        | Identification Flags: Detailed statements about the user assignment, represented by one or more identifiers from table 12 to table 15. The identifiers are always noted as string elements in an array. Also one or no element must be noted as an array. |
-| IT  | String           | 1..1        | Identification Type: Type of identification data, identifier see table 16.                                                                                                                                                                                |
-| ID  | String           | 0..1        | Identification Data: The actual identification data according to the type from table 16, e.g. a hex-coded UID according to ISO 14443.                                                                                                                     |
+| IL  | String           | 0..1        | Identification Level: Encoded overall status of the user assignment, represented by an identifier from table 11.                                                                                                                                          |
+| IF  | Array of Strings | 0..4        | Identification Flags: Detailed statements about the user assignment, represented by one or more identifiers from table 13 to table 16. The identifiers are always noted as string elements in an array. Also one or no element must be noted as an array. |
+| IT  | String           | 1..1        | Identification Type: Type of identification data, identifier see table 17.                                                                                                                                                                                |
+| ID  | String           | 0..1        | Identification Data: The actual identification data according to the type from table 17, e.g. a hex-coded UID according to ISO 14443.                                                                                                                     |
 | TT  | String (0..250)  | 0..1        | Tariff Text: A textual description used to identify a unique tariff. This field is intended for the tariff designation in "Direct Payment" use case.                                                                                                      |
 <small>Table 4: Fields for User Assignment</small>
+
+##### EVSE Metrologic parameters
+
+Fields described in this section trace EVSE parameters that are influent for metrology.
+
+| Key | Type   | Cardinality | Description                                                                                                                                                                                     |
+|-----|--------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| LC  | Object | 0..1        | Loss Compensation: Characteristics of EVSE's charging cable used for identifying and processing cable loss compensation algorithm. Parameters of these characteristics are defined in table 24. |
+<small>Table 5: Fields for EVSE Metrologic Parameters</small>
 
 
 ##### Assignment of the Charge Point
@@ -320,9 +331,9 @@ This can be an alternative to identification by serial numbers or can be used ad
 
 | Key | Type   | Cardinality | Description                                                                                                                      |
 |-----|--------|-------------|----------------------------------------------------------------------------------------------------------------------------------|
-| CT  | String | 0..1        | Charge Point Identification Type: Type of the specification for the identification of the charge point, identifier see table 17. |
+| CT  | String | 0..1        | Charge Point Identification Type: Type of the specification for the identification of the charge point, identifier see table 18. |
 | CI  | String | 0..1        | Charge Point Identification: Identification information for the charge point.                                                    |
-<small>Table 5: Fields for Identification of the Charge Point</small>
+<small>Table 6: Fields for Identification of the Charge Point</small>
 
 
 ##### Readings
@@ -330,7 +341,7 @@ This can be an alternative to identification by serial numbers or can be used ad
 One or more readings can be stored in a record. Each reading is encapsulated in a sub-object.
 These objects are noted as an array under the key "RD" for Reading(s).
 This array thus contains one or more anonymous objects.
-Each of these objects is constructed as described in table 6.
+Each of these objects is constructed as described in table 7.
 For the readings, fields that have an identical value to the previous reading are omitted.
 However, this only applies within a signed record. This means concretely that, for example, only in the first
 sub-object the field "RI" is defined with a value (here the OBIS code) and is thus valid for all further readings.
@@ -343,15 +354,16 @@ A power failure during time-based billing represents an error event.
 
 | Key | Type   | Cardinality | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |-----|--------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TM  | String | 1..1        | Time: Specification to the system time of the reading and synchronization state. <br> The time is described according to ISO 8601 with a resolution of milliseconds. Accordingly, the format is according to the following scheme: <br> `<Year>-<Month>-<Day>T<Hours>:<Minutes>:<Seconds>,<Milliseconds><Time Zone>` <br> The year is displayed with four digits. Month, day, hours, minutes and seconds is displayed with two digits. Milliseconds is displayed with three digits. The indication of the time zone consists of a sign and a four-digit indication for hours and minutes. <br> Example: `2018-07-24T13:22:04,000+0200` <br> The synchronization state consists of a capital letter as identifier. This is added to the time, separated by a space. Available states see table 18.                                         |
+| TM  | String | 1..1        | Time: Specification to the system time of the reading and synchronization state. <br> The time is described according to ISO 8601 with a resolution of milliseconds. Accordingly, the format is according to the following scheme: <br> `<Year>-<Month>-<Day>T<Hours>:<Minutes>:<Seconds>,<Milliseconds><Time Zone>` <br> The year is displayed with four digits. Month, day, hours, minutes and seconds is displayed with two digits. Milliseconds is displayed with three digits. The indication of the time zone consists of a sign and a four-digit indication for hours and minutes. <br> Example: `2018-07-24T13:22:04,000+0200` <br> The synchronization state consists of a capital letter as identifier. This is added to the time, separated by a space. Available states see table 19.                                         |
 | TX  | String | 0..1        | Transaction: Meter reading reason, reference of meter reading to transaction, noted as capital letter: <br> B – Begin of transaction <br> C – Charging = during charging (can be used optionally) <br> X – Exception = Error during charging, transaction continues, time and/or energy are no longer usable from this reading (incl.). <br> E – End of transaction, alternatively more precise codes: <br> L – Charging process was terminated locally <br> R – Charging process was terminated remotely <br> A – (Abort) Charging process was aborted by error <br> P – (Power) Charging process was terminated by power failure <br> S – Suspended = Transaction active, but currently not charging (can be used optionally) <br> T – Tariff change <br> This field is missing if there is no transaction reference (Fiscal Metering). |
 | RV  | Number | 1..1        | Reading Value: The value of the reading <br>Here the JSON data format Number is used, this allows among other things an exact marking of the valid decimal places. However, the representation must not be transformed by further handling methods (e.g. processing by JSON parser) (rewriting the number with a different exponent, truncation of decimal places, etc.) since this would change the representation of the physical quantity and thus potentially the number of valid digits. According to the application rule, it is recommended to represent the measured value with two decimal places of accuracy, if it is kWh.                                                                                                                                                                                                     |
 | RI  | String | 0..1        | Reading Identification: Identifier, which quantity was read, according to OBIS code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| RU  | String | 1..1        | Reading Unit: Unit of reading, e.g. kWh, according to table 19: Predefined Units.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| RT  | String | 0..1        | Reading Current Type: The type of current measured by the meter, e.g. alternating current or direct current, according to table 20: Predefined Current Types. <br> This field is optional. No default value is defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| RU  | String | 1..1        | Reading Unit: Unit of reading, e.g. kWh, according to table 20: Predefined Units.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| RT  | String | 0..1        | Reading Current Type: The type of current measured by the meter, e.g. alternating current or direct current, according to table 21: Predefined Current Types. <br> This field is optional. No default value is defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| CL  | Number | 0..1        | Cumulated Loss: This parameter is optional and can be added only when RI is indicating an accumulation register reading. The value reported here represents cumulated loss withdrawned from measurement when computing loss compensation on RV. CL must be reset at TX=B. CL is given in the same unit as RV which is specified in RU.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | EF  | String | 0..1        | Error Flags: Statement about which quantities are no longer usable for billing due to an error. Each character in this string identifies a quantity. The following characters are defined: <br> E – Energy <br> t – Time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ST  | String | 1..1        | Status: State of the meter at the time of reading. Noted as abbreviation according to table 9.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-<small>Table 6: Fields of a Meter Reading object</small>
+| ST  | String | 1..1        | Status: State of the meter at the time of reading. Noted as abbreviation according to table 10.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+<small>Table 7: Fields of a Meter Reading object</small>
 
 
 ##### Extension Points in Payload Data Section
@@ -384,7 +396,7 @@ The signature section also consists of a standalone JSON object. It contains sev
 | SE  | String | 0..1        | Signature Encoding: Indicates how the signature data is encoded to be stored in the JSON string. This specification is optional. If it is omitted, the default value is effective. The following values are possible: <br> hex – The signature data is represented in the JSON string in hexadecimal encoding (default) <br> base64 – The signature data is base64 encoded in the JSON string. |
 | SM  | String | 0..1        | Signature Mime Type: Indicates how the signature data is to be interpreted. This specification is optional. If it is omitted, the default value is effective. The following values are possible: <br> application/x-der – DER encoded ASN.1 structure (default)                                                                                                                                |
 | SD  | String | 1..1        | Signature Data: The actual signature data according to the format specification above.                                                                                                                                                                                                                                                                                                         |
-<small>Table 7: Signature Data Fields of the Signature Section</small>
+<small>Table 8: Signature Data Fields of the Signature Section</small>
 
 
 ##### Extension Points in Signature Section
@@ -456,6 +468,12 @@ Examples of the resulting JSON-based formats:
         "IT": "ISO14443",
         "ID": "1F2D3A4F5506C7",
         "TT": "Tarif 1",
+        "LC": {
+            "LN": "cable_name",
+            "LI": 1,
+            "LR": 2,
+            "LU": "mOhm"
+        },
         "RD": [
             {
                 "TM": "2018-07-24T13:22:04,000+0200 S",
@@ -463,7 +481,18 @@ Examples of the resulting JSON-based formats:
                 "RV": 2935.6,
                 "RI": "1-b:1.8.0",
                 "RU": "kWh",
-                "RT": "AC",
+                "RT": "DC",
+                "EF": "",
+                "ST": "G"
+            },
+            {
+                "TM": "2018-07-24T13:26:04,000+0200 S",
+                "TX": "E",
+                "RV": 2965.1,
+                "CL": 0.5,
+                "RI": "1-b:1.8.0",
+                "RU": "kWh",
+                "RT": "DC",
                 "EF": "",
                 "ST": "G"
             }
@@ -491,7 +520,7 @@ The following table represents the predefined values for the meter manufacturer 
 |                 | EM111-DIN.AV8.1.X.S1.PF |
 |                 | EM210-72D.MV5.3.X.OS.X  |
 | NZR             | EcoCount S 85           |
-<small>Table 8: Values for manufacturer/model of the meter</small>
+<small>Table 9: Values for manufacturer/model of the meter</small>
 
 
 #### State / Error of the Meter
@@ -512,7 +541,7 @@ This field can take one value at the same time.
 | S     | SUBSTITUTE   | A substitute value was formed                                                 |
 | E     | OTHER_ERROR  | Other, not further known error                                                |
 | F     | READ_ERROR   | Meter register not read correctly; value of the readout is not valid          |
-<small>Table 9: State / Error of the Meter</small>
+<small>Table 10: State / Error of the Meter</small>
 
 
 ### User Assignment
@@ -535,7 +564,7 @@ which are not distinguished in the format.
 |                           | INVALID      | Error; certificate not correct (check negative).                                                                      |
 |                           | OUTDATED     | Error; referenced trust certificate expired.                                                                          |
 |                           | UNKNOWN      | Certificate could not be successfully verified (no matching trust certificate found).                                 |
-<small>Table 10: Status and Error States of User Assignment</small>
+<small>Table 11: Status and Error States of User Assignment</small>
 
 
 ### Details
@@ -548,11 +577,11 @@ Table 11 describes the division into sub-fields, the following tables describe t
 
 | Content                                | For Details See |
 |----------------------------------------|-----------------|
-| [RFID related portion](#rfid)          | Table 12        |
-| [OCPP related portion](#ocpp)          | Table 13        |
-| [ISO 15118 related portion](#iso15118) | Table 14        |
-| [PLMN related portion](#plmn)          | Table 15        |
-<small>Table 11: Overview of Relation Details of the User Assignment</small>
+| [RFID related portion](#rfid)          | Table 13        |
+| [OCPP related portion](#ocpp)          | Table 14        |
+| [ISO 15118 related portion](#iso15118) | Table 15        |
+| [PLMN related portion](#plmn)          | Table 16        |
+<small>Table 12: Overview of Relation Details of the User Assignment</small>
 
 
 #### [RFID Related Portion](#rfid)
@@ -563,7 +592,7 @@ Table 11 describes the division into sub-fields, the following tables describe t
 | RFID_PLAIN   | Assignment via external RFID card reader                                                |
 | RFID_RELATED | Assignment via protected RFID card reader                                               |
 | RFID_PSK     | A previously known shared key (pre-shared key) was used, e.g. with a secured RFID card. |
-<small>Table 12: RFID Related Portion of the User Assignment</small>
+<small>Table 13: RFID Related Portion of the User Assignment</small>
 
 
 #### [OCPP Related Portion](#ocpp)
@@ -578,7 +607,7 @@ Table 11 describes the division into sub-fields, the following tables describe t
 | OCPP_CACHE     | Assignment by authorization cache of OCPP                                     |
 | OCPP_WHITELIST | Assignment by whitelist from OCPP                                             |
 | OCPP_CERTIFIED | A certificate of the backend was used which certifies the user mapping.       |
-<small>Table 13: OCPP Related Portion of the User Assignment</small>
+<small>Table 14: OCPP Related Portion of the User Assignment</small>
 
 
 #### [ISO 15118 Related Portion](#iso15118)
@@ -587,7 +616,7 @@ Table 11 describes the division into sub-fields, the following tables describe t
 |---------------|---------------------------------|
 | ISO15118_NONE | no user assignment by ISO 15118 |
 | ISO15118_PNC  | Plug & Charge was used          |
-<small>Table 14: ISO 15118 Related Portion of User Assignment</small>
+<small>Table 15: ISO 15118 Related Portion of User Assignment</small>
 
 
 #### [PLMN Related Portion](#plmn)
@@ -597,7 +626,7 @@ Table 11 describes the division into sub-fields, the following tables describe t
 | PLMN_NONE  | no user assignment |
 | PLMN_RING  | call               |
 | PLMN_SMS   | short message      |
-<small>Table 15: PLMN Related Portion of User Assignment</small>
+<small>Table 16: PLMN Related Portion of User Assignment</small>
 
 
 ### Type
@@ -628,7 +657,7 @@ provided for the data area.
 | 72    | LOCAL_2      | Locally generated ID, for other cases. No exact format defined. (until OCPP 1.6)                                     |
 | 80    | PHONE_NUMBER | International phone number with leading "+".                                                                         |
 | 90    | KEY_CODE     | User-related private key code. No exact format defined.                                                              |
-<small>Table 16: Types of the User Assignment</small>
+<small>Table 17: Types of the User Assignment</small>
 
 
 ### Charging Point Assignment
@@ -637,7 +666,7 @@ provided for the data area.
 |------------|----------------------------------------------------------------------------------------------------------|
 | EVSEID     | EVSE ID                                                                                                  |
 | CBIDC      | Charge box ID and connector ID according to OCPP, a space is used as field separator, e.g. „STEVE_01 1“. |
-<small>Table 17: Charging point assignment types</small>
+<small>Table 18: Charging Point Assignment Types</small>
 
 
 ### Time Status
@@ -648,7 +677,7 @@ provided for the data area.
 | I          | informative (info clock)                                                                                                                                                                                                                                                                                       |
 | S          | synchronized                                                                                                                                                                                                                                                                                                   |
 | R          | relative time accounting with a calibration law accurate time, based on an info clock. That means, at the beginning of the charging process, a time with informative quality was available. During the charging process, the time (duration) was recorded in accordance with the legal metrology requirements. |
-<small>Table 18: Time Status</small>
+<small>Table 19: Time Status</small>
 
 
 ### Units
@@ -657,7 +686,9 @@ provided for the data area.
 |------|
 | kWh  |
 | Wh   |
-<small>Table 19: Predefined Units</small>
+| mOhm |
+| uOhm |
+<small>Table 20: Predefined Units</small>
 
 
 ### Current Types
@@ -666,7 +697,7 @@ provided for the data area.
 |------------|---------------------------------|
 | AC         | alternating current measurement |
 | DC         | direct current measurement      |
-<small>Table 20: Predefined Current Types</small>
+<small>Table 21: Predefined Current Types</small>
 
 
 ### Cryptography
@@ -682,7 +713,7 @@ provided for the data area.
 | ECDSA-brainpool256r1-SHA256                          | ECDSA               | brainpool256r1                                              | 256 bit    | SHA-256        | 64           |
 | ECDSA-secp384r1-SHA256                               | ECDSA               | secp384r1, NIST P-384, ANSI X9.62 elliptic curve prime384v1 | 384 bit    | SHA-256        | 96           |
 | ECDSA-brainpool384r1-SHA256                          | ECDSA               | brainpool384r1                                              | 384 bit    | SHA-256        | 96           |
-<small>Table 21: Predefined Signature Algorithms and Their Parameters</small>
+<small>Table 22: Predefined Signature Algorithms and Their Parameters</small>
 
 
 #### Public Key Types
@@ -696,9 +727,23 @@ provided for the data area.
 | 5     | ECDSA-brainpool256r1                          | ECDSA               | brainpool256r1 | 256 bit    | 64           |
 | 6     | ECDSA-secp384r1                               | ECDSA               | secp384r1      | 384 bit    | 96           |
 | 7     | ECDSA-brainpool384r1                          | ECDSA               | brainpool384r1 | 384 bit    | 96           |
-<small>Table 22: Predefined Public Key Types</small>
+<small>Table 23: Predefined Public Key Types</small>
 
 Note: The term "Key Length" refers to the key length of the corresponding private key.
+
+
+### Cable Loss Compensation Parameters
+
+The cable loss data consists in an object under the key "LC". It shall contain Cable Resistance value and may contain
+optional traceability parameters, as explained in following table.
+
+| Key  | Type           | Cardinality | Description                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|------|----------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| LN   | String (0..20) | 0..1        | Loss compensation Naming: This parameter is optional. A meter can use this value for adding a traceability text for justifying cable loss characteristics.                                                                                                                                                                                                                                                                                           |
+| LI   | Number         | 0..1        | Loss compensation Identification: This parameter is optional. A meter can use this value for adding a traceability ID number for justifying cable loss characteristics from a lookup table specified in meter's documentation.                                                                                                                                                                                                                       |
+| LR   | Number         | 1..1        | Loss compensation cable Resistance: This parameter is mandatory. A meter shall use this value for specifying the cable resistance value used in cable Loss compensation computation.                                                                                                                                                                                                                                                                 |
+| LU   | Number         | 1..1        | Loss compensation cable resistance Unit: This parameter is mandatory. A meter shall use this field for specifying the unit of cable resistance value given by LR field used in cable loss compensation computation. The unit of this value can be traced in OCMF format in addition to meter's documentation. Allowed values are milliohm or microohm; LU value for milliohm shall be "mOhm", LU value for microohm shall be "uOhm".                 |
+<small>Table 24: Cable Loss Compensation Parameters</small>
 
 
 ## Best Practice - Additional OCPP Configuration Keys
