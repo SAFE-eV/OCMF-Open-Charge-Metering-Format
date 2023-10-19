@@ -84,7 +84,7 @@ License](https://creativecommons.org/licenses/by-nd/4.0/legalcode).
 * ECDSA: Elliptic Curve Digital Signature Algorithm
 * EMP: Electric Mobility Provider
 * ISO: International Standards Organization
-* MID: Measuring Instruments Directive, european directive 2004/22/EG
+* MID: Measuring Instruments Directive, european directive 2014/32/EU
 * OBIS: Object Identification System
 * OCPP: Open Charge Point Protocol
 * PIN: Personal Identification Number
