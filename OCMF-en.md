@@ -320,6 +320,7 @@ Fields described in this section trace EVSE parameters that are influent for met
 
 | Key | Type   | Cardinality | Description                                                                                                                                                                                     |
 |-----|--------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CCV | String<br> (0..25) | 0..1        | Charge Controller Version: Firmware version of the charge controller on the EVSE.<br> This optional value is, e.g., required by (some) notified bodies to ensure tracability of any OCMF data set to the documentation of the corresponding Schalt-Mess-Koordination ("switch-measure-coordination").
 | LC  | Object | 0..1        | Loss Compensation: Characteristics of EVSE's charging cable used for identifying and processing cable loss compensation algorithm. Parameters of these characteristics are defined in table 24. |
 <small>Table 5: Fields for EVSE Metrologic Parameters</small>
 
