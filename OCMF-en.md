@@ -704,29 +704,29 @@ provided for the data area.
 
 #### Signature methods
 
-| Identifier                                           | Signature Algorithm | Curve Name and Synonyms, if any                             | Key Length | Hash Algorithm | Block Length |
-|------------------------------------------------------|---------------------|-------------------------------------------------------------|------------|----------------|--------------|
-| ECDSA-secp192k1-SHA256                               | ECDSA               | secp192k1                                                   | 192 bit    | SHA-256        | 48           |
-| ECDSA-secp256k1-SHA256                               | ECDSA               | secp256k1                                                   | 256 bit    | SHA-256        | 64           |
-| ECDSA-secp192r1-SHA256                               | ECDSA               | secp192r1                                                   | 192 bit    | SHA-256        | 48           |
-| ECDSA-secp256r1-SHA256 (default in OCMF Version 1.2) | ECDSA               | secp256r1, NIST P-256, ANSI X9.62 elliptic curve prime256v1 | 256 bit    | SHA-256        | 64           |
-| ECDSA-brainpool256r1-SHA256                          | ECDSA               | brainpool256r1                                              | 256 bit    | SHA-256        | 64           |
-| ECDSA-secp384r1-SHA256                               | ECDSA               | secp384r1, NIST P-384, ANSI X9.62 elliptic curve prime384v1 | 384 bit    | SHA-256        | 96           |
-| ECDSA-brainpool384r1-SHA256                          | ECDSA               | brainpool384r1                                              | 384 bit    | SHA-256        | 96           |
+| Identifier                                              | Signature Algorithm | Curve Name and Synonyms, if any                             | Key Length | Hash Algorithm | Block Length |
+|---------------------------------------------------------|---------------------|-------------------------------------------------------------|------------|----------------|--------------|
+| ECDSA-secp192k1-SHA256                                  | ECDSA               | secp192k1                                                   | 192 bit    | SHA-256        | 48           |
+| ECDSA-secp256k1-SHA256                                  | ECDSA               | secp256k1                                                   | 256 bit    | SHA-256        | 64           |
+| ECDSA-secp192r1-SHA256                                  | ECDSA               | secp192r1                                                   | 192 bit    | SHA-256        | 48           |
+| ECDSA-secp256r1-SHA256 (default since OCMF Version 0.4) | ECDSA               | secp256r1, NIST P-256, ANSI X9.62 elliptic curve prime256v1 | 256 bit    | SHA-256        | 64           |
+| ECDSA-brainpool256r1-SHA256                             | ECDSA               | brainpool256r1                                              | 256 bit    | SHA-256        | 64           |
+| ECDSA-secp384r1-SHA256                                  | ECDSA               | secp384r1, NIST P-384, ANSI X9.62 elliptic curve prime384v1 | 384 bit    | SHA-256        | 96           |
+| ECDSA-brainpool384r1-SHA256                             | ECDSA               | brainpool384r1                                              | 384 bit    | SHA-256        | 96           |
 <small>Table 22: Predefined Signature Algorithms and Their Parameters</small>
 
 
 #### Public Key Types
 
-| Value | Identifier                                    | Signature Algorithm | Curve          | Key Length | Block Length |
-|-------|-----------------------------------------------|---------------------|----------------|------------|--------------|
-| 1     | ECDSA-secp192k1                               | ECDSA               | secp192k1      | 192 bit    | 48           |
-| 2     | ECDSA-secp256k1                               | ECDSA               | secp256k1      | 256 bit    | 64           |
-| 3     | ECDSA-secp192r1                               | ECDSA               | secp192r1      | 192 bit    | 48           |
-| 4     | ECDSA-secp256r1 (default in OCMF Version 1.2) | ECDSA               | secp256r1      | 256 bit    | 64           |
-| 5     | ECDSA-brainpool256r1                          | ECDSA               | brainpool256r1 | 256 bit    | 64           |
-| 6     | ECDSA-secp384r1                               | ECDSA               | secp384r1      | 384 bit    | 96           |
-| 7     | ECDSA-brainpool384r1                          | ECDSA               | brainpool384r1 | 384 bit    | 96           |
+| Value | Identifier                                        | Signature Algorithm | Curve          | Key Length | Block Length |
+|-------|---------------------------------------------------|---------------------|----------------|------------|--------------|
+| 1     | ECDSA-secp192k1                                   | ECDSA               | secp192k1      | 192 bit    | 48           |
+| 2     | ECDSA-secp256k1                                   | ECDSA               | secp256k1      | 256 bit    | 64           |
+| 3     | ECDSA-secp192r1                                   | ECDSA               | secp192r1      | 192 bit    | 48           |
+| 4     | ECDSA-secp256r1 (default since OCMF Version 0.4)  | ECDSA               | secp256r1      | 256 bit    | 64           |
+| 5     | ECDSA-brainpool256r1                              | ECDSA               | brainpool256r1 | 256 bit    | 64           |
+| 6     | ECDSA-secp384r1                                   | ECDSA               | secp384r1      | 384 bit    | 96           |
+| 7     | ECDSA-brainpool384r1                              | ECDSA               | brainpool384r1 | 384 bit    | 96           |
 <small>Table 23: Predefined Public Key Types</small>
 
 Note: The term "Key Length" refers to the key length of the corresponding private key.
