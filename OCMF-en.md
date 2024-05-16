@@ -1,8 +1,5 @@
 # Open Charge Metering Format
 
-Revision: 1.2
-
-
 ## Contributors
 
 | Role          | Responsible                                | Company                                   |
@@ -14,6 +11,7 @@ Revision: 1.2
 | Contributors  | Michael Staubermann                        | [Webolution](https://www.webolution.de/)  |
 | Contributors  | Michael Heimpold                           | [chargebyte](https://www.chargebyte.com/) |
 | Contributors  | Mathieu Lémont                             | [LEM](https://www.lem.com/)               |
+| Contributors  | Stefan Zenger                              | [DZG](https://www.dzg.de/en/)             |
 
 
 ## Revision Overview
@@ -22,6 +20,7 @@ Changes from the previous version are marked with change tracking.
 
 | Revision | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Date          |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| 1.3.1    | Removed redundant version string on top of the file, using this table as a singularity for versioning instead | 2024-05-16/FR |
 | 1.3.0    | Add optional field "CF" for EVSE charge controller firmware version | 2024-04-18/FR |
 | 1.2.0    | Cable loss compensation data, definition of new parameters used for compensating Energy loss due to EVSE's charging Cable Resistance                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | 2023-05-24/AM |
 | 1.1.0    | Ad-hoc charging, added tariff information.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 2023-02-09/FR |
