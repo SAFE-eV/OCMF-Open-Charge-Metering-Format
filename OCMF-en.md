@@ -630,35 +630,35 @@ Table 11 describes the division into sub-fields, the following tables describe t
 <small>Table 16: PLMN Related Portion of User Assignment</small>
 
 
-### Type
+### Identification Type
 
-Table 16 describes the possible types of user mappings, which can be used in the Type field as unsigned integer in the
-Type field. These mappings are based on the specifications from OCPP. OCPP currently (version 1.5) only provides
+Table 17 describes the possible types of user mappings, which can be used in the Identification Type field.
+These mappings are based on the specifications from OCPP. OCPP currently (version 1.5) only provides
 20 characters for the identification feature.
 In accordance with the maximum length of an IBAN (34 characters) allocations of up to 40 bytes have been
 provided for the data area.
 
-| Token | Identifier   | Description                                                                                                          |
-|-------|--------------|----------------------------------------------------------------------------------------------------------------------|
-| 0     | NONE         | No assignment available                                                                                              |
-| 1     | DENIED       | Assignment currently not available (due to two-factor authorization)                                                 |
-| 2     | UNDEFINED    | Type not specified                                                                                                   |
-| 10    | ISO14443     | UID of an RFID card according to ISO 14443. Represented as 4 or 7 bytes in hexadecimal notation.                     |
-| 11    | ISO15693     | UID of an RFID card according to ISO 15693. Represented as 8 bytes in hexadecimal notation.                          |
-| 20    | EMAID        | Electro-Mobility-Account-ID according to ISO/IEC 15118 (string with length 14 or 15)                                 |
-| 21    | EVCCID       | ID of an electric vehicle according to ISO/IEC 15118 (maximum length 6 characters)                                   |
-| 30    | EVCOID       | EV Contract ID according to DIN 91286.                                                                               |
-| 40    | ISO7812      | Identification card format according to ISO/IEC 7812 (credit and bank cards, etc.)                                   |
-| 50    | CARD_TXN_NR  | Card transaction number (CardTxNbr) for a payment with credit or bank card used in a terminal at the charging point. |
-| 60    | CENTRAL      | Centrally generated ID. No exact format defined, can be e.g. a UUID. (OCPP 2.0)                                      |
-| 61    | CENTRAL_1    | Centrally generated ID, e.g. by start via SMS. No exact format defined. (until OCPP 1.6)                             |
-| 62    | CENTRAL_2    | Centrally generated ID, e.g. by operator start. No exact format defined. (until OCPP 1.6)                            |
-| 70    | LOCAL        | Locally generated ID. No exact format defined, might be e.g. a UUID. (OCPP 2.0)                                      |
-| 71    | LOCAL_1      | Locally generated ID, e.g. ID generated internally by the charge point. No exact format defined. (until OCPP 1.6)    |
-| 72    | LOCAL_2      | Locally generated ID, for other cases. No exact format defined. (until OCPP 1.6)                                     |
-| 80    | PHONE_NUMBER | International phone number with leading "+".                                                                         |
-| 90    | KEY_CODE     | User-related private key code. No exact format defined.                                                              |
-<small>Table 17: Types of the User Assignment</small>
+| Identifier   | Description                                                                                                          |
+|--------------|----------------------------------------------------------------------------------------------------------------------|
+| NONE         | No assignment available                                                                                              |
+| DENIED       | Assignment currently not available (due to two-factor authorization)                                                 |
+| UNDEFINED    | Type not specified                                                                                                   |
+| ISO14443     | UID of an RFID card according to ISO 14443. Represented as 4 or 7 bytes in hexadecimal notation.                     |
+| ISO15693     | UID of an RFID card according to ISO 15693. Represented as 8 bytes in hexadecimal notation.                          |
+| EMAID        | Electro-Mobility-Account-ID according to ISO/IEC 15118 (string with length 14 or 15)                                 |
+| EVCCID       | ID of an electric vehicle according to ISO/IEC 15118 (maximum length 6 characters)                                   |
+| EVCOID       | EV Contract ID according to DIN 91286.                                                                               |
+| ISO7812      | Identification card format according to ISO/IEC 7812 (credit and bank cards, etc.)                                   |
+| CARD_TXN_NR  | Card transaction number (CardTxNbr) for a payment with credit or bank card used in a terminal at the charging point. |
+| CENTRAL      | Centrally generated ID. No exact format defined, can be e.g. a UUID. (OCPP 2.0)                                      |
+| CENTRAL_1    | Centrally generated ID, e.g. by start via SMS. No exact format defined. (until OCPP 1.6)                             |
+| CENTRAL_2    | Centrally generated ID, e.g. by operator start. No exact format defined. (until OCPP 1.6)                            |
+| LOCAL        | Locally generated ID. No exact format defined, might be e.g. a UUID. (OCPP 2.0)                                      |
+| LOCAL_1      | Locally generated ID, e.g. ID generated internally by the charge point. No exact format defined. (until OCPP 1.6)    |
+| LOCAL_2      | Locally generated ID, for other cases. No exact format defined. (until OCPP 1.6)                                     |
+| PHONE_NUMBER | International phone number with leading "+".                                                                         |
+| KEY_CODE     | User-related private key code. No exact format defined.                                                              |
+<small>Table 17: Identification Types of a User Assignment</small>
 
 
 ### Charging Point Assignment
