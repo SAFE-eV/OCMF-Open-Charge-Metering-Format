@@ -719,15 +719,15 @@ provided for the data area.
 
 #### Public Key Types
 
-| Value | Identifier                                        | Signature Algorithm | Curve          | Key Length | Block Length |
-|-------|---------------------------------------------------|---------------------|----------------|------------|--------------|
-| 1     | ECDSA-secp192k1                                   | ECDSA               | secp192k1      | 192 bit    | 48           |
-| 2     | ECDSA-secp256k1                                   | ECDSA               | secp256k1      | 256 bit    | 64           |
-| 3     | ECDSA-secp192r1                                   | ECDSA               | secp192r1      | 192 bit    | 48           |
-| 4     | ECDSA-secp256r1 (default since OCMF Version 0.4)  | ECDSA               | secp256r1      | 256 bit    | 64           |
-| 5     | ECDSA-brainpool256r1                              | ECDSA               | brainpool256r1 | 256 bit    | 64           |
-| 6     | ECDSA-secp384r1                                   | ECDSA               | secp384r1      | 384 bit    | 96           |
-| 7     | ECDSA-brainpool384r1                              | ECDSA               | brainpool384r1 | 384 bit    | 96           |
+| Identifier                                        | Signature Algorithm | Curve          | Key Length | Block Length |
+|---------------------------------------------------|---------------------|----------------|------------|--------------|
+| ECDSA-secp192k1                                   | ECDSA               | secp192k1      | 192 bit    | 48           |
+| ECDSA-secp256k1                                   | ECDSA               | secp256k1      | 256 bit    | 64           |
+| ECDSA-secp192r1                                   | ECDSA               | secp192r1      | 192 bit    | 48           |
+| ECDSA-secp256r1 (default since OCMF Version 0.4)  | ECDSA               | secp256r1      | 256 bit    | 64           |
+| ECDSA-brainpool256r1                              | ECDSA               | brainpool256r1 | 256 bit    | 64           |
+| ECDSA-secp384r1                                   | ECDSA               | secp384r1      | 384 bit    | 96           |
+| ECDSA-brainpool384r1                              | ECDSA               | brainpool384r1 | 384 bit    | 96           |
 <small>Table 23: Predefined Public Key Types</small>
 
 Note: The term "Key Length" refers to the key length of the corresponding private key.
