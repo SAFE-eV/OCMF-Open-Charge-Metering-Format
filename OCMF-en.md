@@ -767,19 +767,25 @@ Additional configuration keys für OCPP:
   If the list is empty, all MeterValues records are transmitted unsigned.
 
 
-## Extension to IEC62056-6-1
-To allow for a clear identification of billing relevant data, a range of manufacturer specific OBIS codes in the 'C' field shall be reserved for use in OCMF. The codes are displayed in the following table.
+## Extension to Billing Relevant OBIS Representation
+To ensure clear identification of billing-relevant data, particularly in the context of the Transparenzsoftware, a range of manufacturer-specific OBIS codes in the 'C' field are defined for use within OCMF as part of the specification. This is compliant to IEC62056-6-1.
+The OBIS codes are represented in hexadecimal format and are categorized as follows:  
+- Mains Energy: Energy measured directly at the meter.
+- Device Energy: Energy measured at the consuming device (e.g., a car).
+- Transaction Energy: Energy used during the charging session.
 
-| OBIS ID (hex)                                    | OBIS ID (dec)                                   | Description                      |
-|--------------------------------------------------|-------------------------------------------------|----------------------------------|
-| 01-00:B0.08.00\*FF                               | 1-0:176.8.0\*255                                | Total Import Mains Energy        |
-| 01-00:B1.08.00\*FF                               | 1-0:177.8.0\*255                                | Total Import Device Energy       |
-| 01-00:B2.08.00\*FF                               | 1-0:178.8.0\*255                                | Transaction Import Mains Energy  |
-| 01-00:B3.08.00\*FF                               | 1-0:179.8.0\*255                                | Transaction Import Device Energy |
-| xx-xx:B4.08.xx\*xx<br>... <br>xx-xx.BF.08.xx\*xx | xx-xx:180.8.xx\*xx<br>...<br>xx-xx:191.8.xx\*xx | Reserved for future use          |
-| 01-00:C0.08.00\*FF                               | 1-0:192.8.0\*255                                | Total Export Mains Energy        |
-| 01-00:C1.08.00\*FF                               | 1-0:193.8.0\*255                                | Total Export Device Energy       |
-| 01-00:C2.08.00\*FF                               | 1-0:194.8.0\*255                                | Transaction Export Mains Energy  |
-| 01-00:C3.08.00\*FF                               | 1-0:195.8.0\*255                                | Transaction Export Device Energy |
-| xx-xx:C4.08.xx\*xx<br>... <br>xx-xx.C7.08.xx\*xx | xx-xx:196.8.xx\*xx<br>...<br>xx-xx:199.8.xx\*xx | Reserved for future use          |
-<small>Table 25: OCMF reserved OBIS IDs</small>
+The following table provides a detailed overview of the extended OBIS IDs:
+
+| OBIS ID (hex)                                    | Description                      |
+|--------------------------------------------------|----------------------------------|
+| 01-00:B0.08.00\*FF                               | Total Import Mains Energy        |
+| 01-00:B1.08.00\*FF                               | Total Import Device Energy       |
+| 01-00:B2.08.00\*FF                               | Transaction Import Mains Energy  |
+| 01-00:B3.08.00\*FF                               | Transaction Import Device Energy |
+| xx-xx:B4.08.xx\*xx<br>... <br>xx-xx.BF.08.xx\*xx | Reserved for future use          |
+| 01-00:C0.08.00\*FF                               | Total Export Mains Energy        |
+| 01-00:C1.08.00\*FF                               | Total Export Device Energy       |
+| 01-00:C2.08.00\*FF                               | Transaction Export Mains Energy  |
+| 01-00:C3.08.00\*FF                               | Transaction Export Device Energy |
+| xx-xx:C4.08.xx\*xx<br>... <br>xx-xx.C7.08.xx\*xx | Reserved for future use          |
+<small>Table 25: OCMF Reserved OBIS IDs</small>
