@@ -11,7 +11,7 @@
 | Contributors  | Michael Staubermann                        | [Webolution](https://www.webolution.de/)  |
 | Contributors  | Michael Heimpold                           | [chargebyte](https://www.chargebyte.com/) |
 | Contributors  | Mathieu Lémont                             | [LEM](https://www.lem.com/)               |
-| Contributors  | Stefan Zenger                              | [DZG](https://www.dzg.de/en/)             |
+| Contributors  | Stefan Zenger, Luca Horn                   | [DZG](https://www.dzg.de/en/)             |
 
 
 ## Revision Overview
@@ -20,6 +20,7 @@ Changes from the previous version are marked with change tracking.
 
 | Revision | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Date          |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| 1.4.0    | Added unified OBIS definition compliant with IEC62056-6-1 | 2024-12-05/FR |
 | 1.3.1    | Removed redundant version string on top of the file, using this table as a singularity for versioning instead | 2024-05-16/FR |
 | 1.3.0    | Add optional field "CF" for EVSE charge controller firmware version | 2024-04-18/FR |
 | 1.2.0    | Cable loss compensation data, definition of new parameters used for compensating Energy loss due to EVSE's charging Cable Resistance                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | 2023-05-24/AM |
@@ -764,3 +765,27 @@ Additional configuration keys für OCPP:
 * **MeterValuesSignatureContexts**: MeterValues trigger points for which signed OCMF records are to be generated.
   For possible values see ReadingContext from OCPP (CSL, RW).
   If the list is empty, all MeterValues records are transmitted unsigned.
+
+
+## Extension to Billing Relevant OBIS Representation
+To ensure clear identification of billing-relevant data, particularly in the context of the Transparenzsoftware, a range of manufacturer-specific OBIS codes in the 'C' field are defined for use within OCMF as part of the specification. This is compliant to IEC62056-6-1.
+The OBIS codes are represented in hexadecimal format and are categorized as follows:  
+- Mains Energy: Energy measured directly at the meter.
+- Device Energy: Energy measured at the consuming device (e.g., a car).
+- Transaction Energy: Energy used during the charging session.
+
+The following table provides a detailed overview of the extended OBIS IDs:
+
+| OBIS ID (hex)                                    | Description                      |
+|--------------------------------------------------|----------------------------------|
+| 01-00:B0.08.00\*FF                               | Total Import Mains Energy        |
+| 01-00:B1.08.00\*FF                               | Total Import Device Energy       |
+| 01-00:B2.08.00\*FF                               | Transaction Import Mains Energy  |
+| 01-00:B3.08.00\*FF                               | Transaction Import Device Energy |
+| xx-xx:B4.08.xx\*xx<br>... <br>xx-xx.BF.08.xx\*xx | Reserved for future use          |
+| 01-00:C0.08.00\*FF                               | Total Export Mains Energy        |
+| 01-00:C1.08.00\*FF                               | Total Export Device Energy       |
+| 01-00:C2.08.00\*FF                               | Transaction Export Mains Energy  |
+| 01-00:C3.08.00\*FF                               | Transaction Export Device Energy |
+| xx-xx:C4.08.xx\*xx<br>... <br>xx-xx.C7.08.xx\*xx | Reserved for future use          |
+<small>Table 25: OCMF Reserved OBIS IDs</small>
