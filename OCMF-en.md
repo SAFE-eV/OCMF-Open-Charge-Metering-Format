@@ -814,18 +814,24 @@ The OBIS codes are represented in hexadecimal format and are categorized as foll
 - Device Energy: Energy measured at the consuming device (e.g., a car).
 - Transaction Energy: Energy used during the charging session.
 
+Graphically this can be seen in the following two images:
+![Import Energy Flow](resources/import-energy-flow-ocmf.png)
+<small>Figure 1: Energy Flow Import</small>
+![Export Energy Flow](resources/export-energy-flow-ocmf.png)
+<small>Figure 2: Energy Flow Export</small>
+
 The following table provides a detailed overview of the extended OBIS IDs:
 
 | OBIS ID (hex)                                    | Description                      |
 |--------------------------------------------------|----------------------------------|
-| 01-00:B0.08.00\*FF                               | Total Import Mains Energy        |
-| 01-00:B1.08.00\*FF                               | Total Import Device Energy       |
-| 01-00:B2.08.00\*FF                               | Transaction Import Mains Energy  |
-| 01-00:B3.08.00\*FF                               | Transaction Import Device Energy |
+| 01-00:B0.08.00\*xx                               | Total Import Mains Energy        |
+| 01-00:B1.08.00\*xx                               | Total Import Device Energy       |
+| 01-00:B2.08.00\*xx                               | Transaction Import Mains Energy  |
+| 01-00:B3.08.00\*xx                               | Transaction Import Device Energy |
 | xx-xx:B4.08.xx\*xx<br>... <br>xx-xx.BF.08.xx\*xx | Reserved for future use          |
-| 01-00:C0.08.00\*FF                               | Total Export Mains Energy        |
-| 01-00:C1.08.00\*FF                               | Total Export Device Energy       |
-| 01-00:C2.08.00\*FF                               | Transaction Export Mains Energy  |
-| 01-00:C3.08.00\*FF                               | Transaction Export Device Energy |
+| 01-00:C0.08.00\*xx                               | Total Export Mains Energy        |
+| 01-00:C1.08.00\*xx                               | Total Export Device Energy       |
+| 01-00:C2.08.00\*xx                               | Transaction Export Mains Energy  |
+| 01-00:C3.08.00\*xx                               | Transaction Export Device Energy |
 | xx-xx:C4.08.xx\*xx<br>... <br>xx-xx.C7.08.xx\*xx | Reserved for future use          |
 <small>Table 25: OCMF Reserved OBIS IDs</small>
