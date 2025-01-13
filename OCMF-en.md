@@ -452,7 +452,7 @@ Examples of the resulting JSON-based formats:
 #### Example File
 
     OCMF|{
-        "FV": "1.0",
+        "FV": "1.4",
         "GI": "ABL SBC-301",
         "GS": "808829900001",
         "GV": "1.4p3",
@@ -480,8 +480,8 @@ Examples of the resulting JSON-based formats:
             {
                 "TM": "2018-07-24T13:22:04,000+0200 S",
                 "TX": "B",
-                "RV": 2935.6,
-                "RI": "1-b:1.8.0",
+                "RV": 2935.600,
+                "RI": "01-0B:01.08.00*FF",
                 "RU": "kWh",
                 "RT": "DC",
                 "EF": "",
@@ -490,9 +490,49 @@ Examples of the resulting JSON-based formats:
             {
                 "TM": "2018-07-24T13:26:04,000+0200 S",
                 "TX": "E",
-                "RV": 2965.1,
+                "RV": 2965.100,
                 "CL": 0.5,
-                "RI": "1-b:1.8.0",
+                "RI": "01-0B:01.08.00*FF",
+                "RU": "kWh",
+                "RT": "DC",
+                "EF": "",
+                "ST": "G"
+            },
+            {
+                "TM": "2018-07-24T13:22:04,000+0200 S",
+                "TX": "B",
+                "RV": 2905.600,
+                "RI": "01-0B:B1.08.00*FF",
+                "RU": "kWh",
+                "RT": "DC",
+                "EF": "",
+                "ST": "G"
+            },
+            {
+                "TM": "2018-07-24T13:26:04,000+0200 S",
+                "TX": "E",
+                "RV": 2934.600,
+                "RI": "01-0B:B1.08.00*FF",
+                "RU": "kWh",
+                "RT": "DC",
+                "EF": "",
+                "ST": "G"
+            },
+            {
+                "TM": "2018-07-24T13:22:04,000+0200 S",
+                "TX": "B",
+                "RV": 0.000,
+                "RI": "01-0B:B3.08.00*FF",
+                "RU": "kWh",
+                "RT": "DC",
+                "EF": "",
+                "ST": "G"
+            },
+            {
+                "TM": "2018-07-24T13:26:04,000+0200 S",
+                "TX": "E",
+                "RV": 29.000,
+                "RI": "01-0B:B3.08.00*FF",
                 "RU": "kWh",
                 "RT": "DC",
                 "EF": "",
@@ -500,7 +540,7 @@ Examples of the resulting JSON-based formats:
             }
         ]
     }|{
-        "SD": "887FABF407AC82782EEFFF2220C2F856AEB0BC22364BBCC6B55761911ED651D1A922BADA88818C9671AFEE7094D7F536"
+        "SD": "1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF"
     }
 
 <small>Figure 1: Example File</small>
