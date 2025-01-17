@@ -816,9 +816,9 @@ The OBIS codes are represented in hexadecimal format and are categorized as foll
 - Transaction Energy: Energy used during the charging session.
 
 Graphically this can be seen in the following two images:
-![Import Energy Flow](resources/import-energy-flow-ocmf.png)
+![Import Energy Flow](resources/import-energy-flow-ocmf.svg)
 <small>Figure 1: Energy Flow Import</small>
-![Export Energy Flow](resources/export-energy-flow-ocmf.png)
+![Export Energy Flow](resources/export-energy-flow-ocmf.svg)
 <small>Figure 2: Energy Flow Export</small>
 
 The following table provides a detailed overview of the extended OBIS IDs:
