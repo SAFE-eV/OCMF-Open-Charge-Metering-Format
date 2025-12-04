@@ -163,7 +163,7 @@ It should be noted that, as a rule, the following readings are relevant under ca
 Thus the following OCPP configuration is typically useful:
 
 - ClockAlignedDataInterval = 900 (15 min)
-- MeterValuesAlignedData = Active.Energy.Register.Import
+- MeterValuesAlignedData = Energy.Active.Import.Register
 - Controller software takes care of generating additional MeterValues with signed values at the start and end
   of the charging process beyond the simple integer value that can be part of
   the StartTransaction.req/StopTransaction.req messages.
