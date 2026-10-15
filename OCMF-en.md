@@ -688,7 +688,7 @@ provided for the data area.
 | ISO14443     | UID of an RFID card according to ISO 14443. Represented as 4 or 7 bytes in hexadecimal notation.                     |
 | ISO15693     | UID of an RFID card according to ISO 15693. Represented as 8 bytes in hexadecimal notation.                          |
 | EMAID        | Electro-Mobility-Account-ID according to ISO/IEC 15118 (string with length 14 or 15)                                 |
-| EVCCID       | ID of an electric vehicle according to ISO/IEC 15118 (maximum length 6 characters)                                   |
+| EVCCID       | ID of an electric vehicle according to ISO/IEC 15118 (maximum length is 12 bytes in hexadecimal notation)            |
 | EVCOID       | EV Contract ID according to DIN 91286.                                                                               |
 | ISO7812      | Identification card format according to ISO/IEC 7812 (credit and bank cards, etc.)                                   |
 | CARD_TXN_NR  | Card transaction number (CardTxNbr) for a payment with credit or bank card used in a terminal at the charging point. |
